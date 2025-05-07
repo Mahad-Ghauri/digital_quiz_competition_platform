@@ -5,6 +5,7 @@ import 'package:digital_quiz_competition_platform/Controllers/input_controllers.
 import 'package:digital_quiz_competition_platform/Views/Authentication/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:iconsax/iconsax.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -228,7 +229,7 @@ class _RegisterPageState extends State<SignupScreen>
                             ),
                             child: Center(
                               child: Icon(
-                                Icons.shopping_bag_rounded,
+                                Iconsax.book,
                                 size: 60,
                                 color: Colors.yellow.shade800,
                               ),

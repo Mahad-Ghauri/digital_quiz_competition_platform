@@ -6,6 +6,7 @@ import 'package:digital_quiz_competition_platform/Views/Authentication/forget_pa
 import 'package:digital_quiz_competition_platform/Views/Authentication/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:iconsax/iconsax.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -217,7 +218,7 @@ class _LoginPageState extends State<LoginScreen> with TickerProviderStateMixin {
                             ),
                             child: Center(
                               child: Icon(
-                                Icons.shopping_bag_rounded,
+                                Iconsax.book,
                                 size: 70,
                                 color: Colors.yellow.shade800,
                               ),
@@ -259,7 +260,7 @@ class _LoginPageState extends State<LoginScreen> with TickerProviderStateMixin {
                               children: [
                                 Center(
                                   child: Text(
-                                    'Sign In',
+                                    'Login',
                                     style: TextStyle(
                                       fontFamily:
                                           GoogleFonts.italiana().fontFamily,
@@ -392,7 +393,7 @@ class _LoginPageState extends State<LoginScreen> with TickerProviderStateMixin {
                                               ),
                                             )
                                             : const Text(
-                                              'Sign In',
+                                              'Login',
                                               style: TextStyle(
                                                 fontSize: 16,
                                                 fontWeight: FontWeight.bold,
