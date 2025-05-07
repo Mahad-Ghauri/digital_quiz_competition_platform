@@ -1,10 +1,8 @@
 ### digital_quiz_competition_platform
 
-# Ilmi Muqabla
+# Quizizen
 
 ## Digital Civic Education Quiz Platform
-
-![Quizizen](https://placeholder.com/logo)
 
 ## About
 
