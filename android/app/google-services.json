@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "925025954218",
+    "project_id": "digital-quiz-71822",
+    "storage_bucket": "digital-quiz-71822.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:925025954218:android:ddb8b693e62cb30f6ee3d3",
+        "android_client_info": {
+          "package_name": "com.example.digital_quiz_competition_platform"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAeEHHEcVIm-TKo3bWE2Eua_Xa512XsIOQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

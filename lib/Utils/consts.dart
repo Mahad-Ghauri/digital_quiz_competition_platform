@@ -1,0 +1,3 @@
+const url = 'https://ilbkoxejsioyoxrykamx.supabase.co';
+const anonKey =
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlsYmtveGVqc2lveW94cnlrYW14Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDY2MTY0MjgsImV4cCI6MjA2MjE5MjQyOH0.uLCxEtMyro2AOMaXjN0NAYCpuXxKryI2Dlr1yTFp8Sw';

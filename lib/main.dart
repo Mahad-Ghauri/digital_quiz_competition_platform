@@ -1,20 +1,64 @@
-import 'package:flutter/material.dart';
+import 'dart:developer';
 
-void main() {
-  runApp(const MainApp());
+// import 'package:auth_screens/Controllers/API%20Services/Chatbot/chat_bot_controller.dart';
+import 'package:digital_quiz_competition_platform/Utils/consts.dart';
+import 'package:digital_quiz_competition_platform/Views/Auth%20Gate/auth_gate.dart';
+import 'package:digital_quiz_competition_platform/firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+
+Future<void> main() async {
+  //  Initialize the Widget Binding
+  WidgetsFlutterBinding.ensureInitialized();
+  //  Firebase Setup
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)
+      .then((value) {
+        log("Firebase Setup Completed. Initializing Supabase");
+        //  Supabase Setup
+        Supabase.initialize(url: url, anonKey: anonKey)
+            .then((value) {
+              log("Supabase initialization completed. Running the application");
+              //  Run the application
+              runApp(
+                MultiProvider(
+                  providers: [
+                    // ChangeNotifierProvider(
+                    //   create: (context) => ChatbotController(),
+                    // ),
+                    // ChangeNotifierProvider(
+                    //   create: (context) => InterfaceController(),
+                    // ),
+                    // ChangeNotifierProvider(create: (context) => ApiServices()),
+                    // ChangeNotifierProvider(create: (context) => CartServices()),
+                  ],
+                  child: const MyApp(),
+                ),
+              );
+            })
+            .onError((error, stackTrace) {
+              log("Supabase initialization failed; $error");
+            });
+      })
+      .onError((error, stackTrace) {
+        log("Firebase initialization failed; $error");
+      });
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
+    return MaterialApp(
+      title: 'Quizizen',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.amber,
+        scaffoldBackgroundColor: Colors.grey.shade100,
       ),
+      home: const AuthGate(),
     );
   }
 }
