@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import '../../components/category_card.dart';
-import '../../components/featured_quiz_card.dart';
-import '../../components/bottom_nav_bar.dart';
+import '../../Components/category_card.dart';
+import '../../Components/featured_quiz_card.dart';
+import '../../Components/bottom_nav_bar.dart';
 import '../../providers/quiz_provider.dart';
 import '../search_page.dart';
 import '../leaderboard_page.dart';

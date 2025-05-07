@@ -4,7 +4,7 @@ import 'package:digital_quiz_competition_platform/Controllers/Authentication/aut
 import 'package:digital_quiz_competition_platform/Controllers/input_controllers.dart';
 import 'package:digital_quiz_competition_platform/Views/Authentication/forget_password_screen.dart';
 import 'package:digital_quiz_competition_platform/Views/Authentication/signup_screen.dart';
-import 'package:digital_quiz_competition_platform/Views/Components/custom_text_field.dart';
+import 'package:digital_quiz_competition_platform/Components/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
