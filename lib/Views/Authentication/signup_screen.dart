@@ -114,7 +114,7 @@ class _RegisterPageState extends State<SignupScreen>
       });
 
       // Simulate registration delay
-      Future.delayed(const Duration(seconds: 2), () {
+      Future.delayed(const Duration(seconds: 1), () {
         setState(() {
           _isLoading = false;
         });
@@ -128,7 +128,7 @@ class _RegisterPageState extends State<SignupScreen>
     } else if (!_acceptTerms) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('Please accept the terms and conditions'),
+          content: Center(child: Text('Please accept the terms and conditions')),
           behavior: SnackBarBehavior.floating,
         ),
       );

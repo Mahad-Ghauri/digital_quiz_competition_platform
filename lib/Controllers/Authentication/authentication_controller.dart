@@ -2,7 +2,6 @@
 
 import 'dart:developer';
 
-
 import 'package:digital_quiz_competition_platform/Views/Authentication/login_screen.dart';
 import 'package:digital_quiz_competition_platform/Views/Interface/interface_page.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +33,7 @@ class AuthenticationController {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             backgroundColor: Colors.green,
-            content: Text('Logged In Successfully'),
+            content: Center(child: Text('Logged In Successfully')),
             behavior: SnackBarBehavior.floating,
           ),
         );
@@ -65,12 +64,16 @@ class AuthenticationController {
           .then((value) {
             //  If the user is signed up, we can redirect them to the home page
             Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => const InterfacePage()),
+              MaterialPageRoute(builder: (context) => const LoginScreen()),
             );
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
                 backgroundColor: Colors.green,
-                content: Text('Welcome Abord. Let\'s start Shopping'),
+                content: Center(
+                  child: Text(
+                    'Welcome to Quizizen! \n Please Login to Continue',
+                  ),
+                ),
                 behavior: SnackBarBehavior.floating,
               ),
             );
