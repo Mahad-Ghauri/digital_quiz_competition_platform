@@ -4,6 +4,7 @@ import 'package:digital_quiz_competition_platform/Controllers/Authentication/aut
 import 'package:digital_quiz_competition_platform/Controllers/input_controllers.dart';
 import 'package:digital_quiz_competition_platform/Views/Authentication/forget_password_screen.dart';
 import 'package:digital_quiz_competition_platform/Views/Authentication/signup_screen.dart';
+import 'package:digital_quiz_competition_platform/Components/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
@@ -291,7 +292,7 @@ class _LoginPageState extends State<LoginScreen> with TickerProviderStateMixin {
                                 const SizedBox(height: 32),
 
                                 // Email field
-                                _buildTextField(
+                                CustomTextField(
                                   controller: inputControllers.emailController,
                                   label: 'Email',
                                   prefixIcon: Icons.email_outlined,
@@ -311,7 +312,7 @@ class _LoginPageState extends State<LoginScreen> with TickerProviderStateMixin {
                                 const SizedBox(height: 20),
 
                                 // Password field
-                                _buildTextField(
+                                CustomTextField(
                                   controller:
                                       inputControllers.passwordController,
                                   label: 'Password',
@@ -478,61 +479,6 @@ class _LoginPageState extends State<LoginScreen> with TickerProviderStateMixin {
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _buildTextField({
-    required TextEditingController controller,
-    required String label,
-    required IconData prefixIcon,
-    TextInputType keyboardType = TextInputType.text,
-    bool obscureText = false,
-    Widget? suffixIcon,
-    String? Function(String?)? validator,
-  }) {
-    return TextFormField(
-      controller: controller,
-      obscureText: obscureText,
-      keyboardType: keyboardType,
-      validator: validator,
-      style: TextStyle(color: Theme.of(context).colorScheme.onBackground),
-      decoration: InputDecoration(
-        labelText: label,
-        prefixIcon: Icon(prefixIcon, color: Colors.yellow.shade800),
-        suffixIcon: suffixIcon,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(
-            color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2),
-          ),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(
-            color: Theme.of(context).colorScheme.onBackground.withOpacity(0.2),
-          ),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: Colors.yellow.shade800, width: 2),
-        ),
-        errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: Theme.of(context).colorScheme.error),
-        ),
-        focusedErrorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(
-            color: Theme.of(context).colorScheme.error,
-            width: 2,
-          ),
-        ),
-        filled: true,
-        fillColor: Theme.of(context).colorScheme.surface,
-        labelStyle: TextStyle(
-          color: Theme.of(context).colorScheme.onBackground.withOpacity(0.7),
-        ),
       ),
     );
   }

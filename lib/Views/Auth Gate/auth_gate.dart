@@ -2,6 +2,7 @@
 import 'package:digital_quiz_competition_platform/Controllers/Authentication/authentication_controller.dart';
 import 'package:digital_quiz_competition_platform/Views/Authentication/login_screen.dart';
 import 'package:digital_quiz_competition_platform/Views/Interface/interface_page.dart';
+// import 'package:digital_quiz_competition_platform/Views/Interface/question_page.dart';
 import 'package:flutter/material.dart';
 
 class AuthGate extends StatelessWidget {
