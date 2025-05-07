@@ -3,6 +3,7 @@ import 'dart:developer';
 // import 'package:auth_screens/Controllers/API%20Services/Chatbot/chat_bot_controller.dart';
 import 'package:digital_quiz_competition_platform/Utils/consts.dart';
 import 'package:digital_quiz_competition_platform/Views/Auth%20Gate/auth_gate.dart';
+import 'package:digital_quiz_competition_platform/Views/Interface/onBoarding.dart';
 import 'package:digital_quiz_competition_platform/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -58,7 +59,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.amber,
         scaffoldBackgroundColor: Colors.grey.shade100,
       ),
-      home: const AuthGate(),
+      home: const Onboarding(),
     );
   }
 }

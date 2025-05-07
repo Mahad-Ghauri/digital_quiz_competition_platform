@@ -110,7 +110,7 @@ class _LoginPageState extends State<LoginScreen> with TickerProviderStateMixin {
       });
 
       // Simulate login delay
-      Future.delayed(const Duration(seconds: 2), () {
+      Future.delayed(const Duration(seconds: 1), () {
         setState(() {
           _isLoading = false;
         });
