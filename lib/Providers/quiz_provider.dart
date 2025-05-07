@@ -10,12 +10,16 @@ class QuizProvider with ChangeNotifier {
   String? _selectedCategoryId;
   int _currentQuestionIndex = 0;
   int _score = 0;
+  bool _isLoading = false;
+  String? _error;
 
   List<CategoryModel> get categories => _categories;
   List<QuestionModel> get questions => _questions;
   String? get selectedCategoryId => _selectedCategoryId;
   int get currentQuestionIndex => _currentQuestionIndex;
   int get score => _score;
+  bool get isLoading => _isLoading;
+  String? get error => _error;
   QuestionModel? get currentQuestion =>
       _questions.isNotEmpty && _currentQuestionIndex < _questions.length
           ? _questions[_currentQuestionIndex]
@@ -23,6 +27,10 @@ class QuizProvider with ChangeNotifier {
 
   Future<void> fetchCategories() async {
     try {
+      _isLoading = true;
+      _error = null;
+      notifyListeners();
+
       final response = await _supabase
           .from('categories')
           .select()
@@ -34,19 +42,27 @@ class QuizProvider with ChangeNotifier {
               .toList()
               .cast<CategoryModel>();
 
+      _isLoading = false;
       notifyListeners();
     } catch (e) {
-      debugPrint('Error fetching categories: $e');
+      _isLoading = false;
+      _error = 'Error fetching categories: $e';
+      debugPrint(_error);
+      notifyListeners();
     }
   }
 
   Future<void> fetchQuestions(String categoryId) async {
     try {
+      _isLoading = true;
+      _error = null;
+      notifyListeners();
+
       final response = await _supabase
           .from('questions')
           .select()
           .eq('category_id', categoryId)
-          .order('id');
+          .order('created_at');
 
       _questions =
           response
@@ -57,10 +73,13 @@ class QuizProvider with ChangeNotifier {
       _selectedCategoryId = categoryId;
       _currentQuestionIndex = 0;
       _score = 0;
-
+      _isLoading = false;
       notifyListeners();
     } catch (e) {
-      debugPrint('Error fetching questions: $e');
+      _isLoading = false;
+      _error = 'Error fetching questions: $e';
+      debugPrint(_error);
+      notifyListeners();
     }
   }
 
@@ -81,6 +100,20 @@ class QuizProvider with ChangeNotifier {
   void resetQuiz() {
     _currentQuestionIndex = 0;
     _score = 0;
+    _error = null;
     notifyListeners();
+  }
+
+  CategoryModel? getCategoryById(String id) {
+    try {
+      return _categories.firstWhere((category) => category.id == id);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  CategoryModel? get currentCategory {
+    if (_selectedCategoryId == null) return null;
+    return getCategoryById(_selectedCategoryId!);
   }
 }
