@@ -6,12 +6,12 @@ import 'package:digital_quiz_competition_platform/Views/Auth%20Gate/auth_gate.da
 import 'package:digital_quiz_competition_platform/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+// import 'package:provider/provider.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 Future<void> main() async {
   //  Initialize the Widget Binding
-  WidgetsFlutterBinding.ensureInitialized();
+  // WidgetsFlutterBinding.ensureInitialized();
   //  Firebase Setup
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)
       .then((value) {
@@ -21,21 +21,21 @@ Future<void> main() async {
             .then((value) {
               log("Supabase initialization completed. Running the application");
               //  Run the application
-              runApp(
-                MultiProvider(
-                  providers: [
-                    // ChangeNotifierProvider(
-                    //   create: (context) => ChatbotController(),
-                    // ),
-                    // ChangeNotifierProvider(
-                    //   create: (context) => InterfaceController(),
-                    // ),
-                    // ChangeNotifierProvider(create: (context) => ApiServices()),
-                    // ChangeNotifierProvider(create: (context) => CartServices()),
-                  ],
-                  child: const MyApp(),
-                ),
-              );
+              // runApp(  
+              //   MultiProvider(
+              //     providers: [
+              //       // ChangeNotifierProvider(
+              //       //   create: (context) => ChatbotController(),
+              //       // ),
+              //       // ChangeNotifierProvider(
+              //       //   create: (context) => InterfaceController(),
+              //       // ),
+              //       // ChangeNotifierProvider(create: (context) => ApiServices()),
+              //       // ChangeNotifierProvider(create: (context) => CartServices()),
+              //     ],
+              //   ),
+              // );
+              runApp(const MyApp());
             })
             .onError((error, stackTrace) {
               log("Supabase initialization failed; $error");

@@ -1,6 +1,5 @@
 // ignore_for_file: deprecated_member_use, use_build_context_synchronously
 
-
 import 'package:digital_quiz_competition_platform/Controllers/Authentication/authentication_controller.dart';
 import 'package:digital_quiz_competition_platform/Controllers/input_controllers.dart';
 import 'package:digital_quiz_competition_platform/Views/Authentication/login_screen.dart';
@@ -522,20 +521,20 @@ class _RegisterPageState extends State<SignupScreen>
           ),
 
           // Back button
-          SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: IconButton(
-                icon: Icon(
-                  Icons.arrow_back_ios,
-                  color: Theme.of(context).colorScheme.onBackground,
-                ),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              ),
-            ),
-          ),
+          // SafeArea(
+          //   child: Padding(
+          //     padding: const EdgeInsets.all(16.0),
+          //     child: IconButton(
+          //       icon: Icon(
+          //         Icons.arrow_back_ios,
+          //         color: Theme.of(context).colorScheme.onBackground,
+          //       ),
+          //       onPressed: () {
+          //         Navigator.pop(context);
+          //       },
+          //     ),
+          //   ),
+          // ),
 
           // Decorative elements
           Positioned(
