@@ -31,16 +31,13 @@ class QuizProvider with ChangeNotifier {
       _error = null;
       notifyListeners();
 
-      final response = await _supabase
-          .from('categories')
-          .select()
-          .order('name');
+      final response =
+          await _supabase.from('categories').select().order('name');
 
-      _categories =
-          response
-              .map((json) => CategoryModel.fromJson(json))
-              .toList()
-              .cast<CategoryModel>();
+      _categories = response
+          .map((json) => CategoryModel.fromJson(json))
+          .toList()
+          .cast<CategoryModel>();
 
       _isLoading = false;
       notifyListeners();
@@ -64,11 +61,10 @@ class QuizProvider with ChangeNotifier {
           .eq('category_id', categoryId)
           .order('created_at');
 
-      _questions =
-          response
-              .map((json) => QuestionModel.fromJson(json))
-              .toList()
-              .cast<QuestionModel>();
+      _questions = response
+          .map((json) => QuestionModel.fromJson(json))
+          .toList()
+          .cast<QuestionModel>();
 
       _selectedCategoryId = categoryId;
       _currentQuestionIndex = 0;
@@ -95,6 +91,13 @@ class QuizProvider with ChangeNotifier {
     }
 
     notifyListeners();
+  }
+
+  void moveToNextQuestion() {
+    if (_currentQuestionIndex < _questions.length - 1) {
+      _currentQuestionIndex++;
+      notifyListeners();
+    }
   }
 
   void resetQuiz() {

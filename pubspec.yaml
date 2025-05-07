@@ -1,17 +1,17 @@
 name: digital_quiz_competition_platform
-description: "A new Flutter project."
+description: A digital quiz competition platform.
 publish_to: 'none'
-version: 0.1.0
+version: 1.0.0+1
 
 environment:
-  sdk: ^3.7.2
+  sdk: '>=3.0.0 <4.0.0'
 
 dependencies:
   firebase_core: ^3.12.1
   cloud_firestore: ^5.6.5
   flutter:
     sdk: flutter
-  supabase_flutter: ^2.3.4
+  supabase_flutter: ^2.3.2
   provider: ^6.1.1
   intl: ^0.19.0
   http: ^1.1.0
@@ -19,7 +19,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   shimmer: ^3.0.0
   image_picker: ^1.0.7
-  google_fonts: ^6.2.1
+  google_fonts: ^6.1.0
   fluttertoast: ^8.2.4
   lottie: ^3.3.1
   curved_navigation_bar: ^1.0.3
@@ -30,15 +30,16 @@ dependencies:
   video_player: ^2.8.2
   visibility_detector: ^0.4.0+2
   flutter_staggered_grid_view: ^0.7.0
+  flutter_animate: ^4.5.0
+  confetti: ^0.7.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^5.0.0
+  flutter_lints: ^2.0.0
 
 flutter:
   uses-material-design: true
-
 
   assets:
    - assets/images/
