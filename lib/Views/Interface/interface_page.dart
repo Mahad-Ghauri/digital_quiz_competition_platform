@@ -186,15 +186,14 @@ class _InterfacePageState extends State<InterfacePage> {
                   child: GridView.builder(
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 15,
-                          mainAxisSpacing: 15,
-                          childAspectRatio: 0.9,
-                        ),
-                    itemCount:
-                        quizProvider.categories.length > 6
-                            ? 6
-                            : quizProvider.categories.length,
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 15,
+                      mainAxisSpacing: 15,
+                      childAspectRatio: 0.9,
+                    ),
+                    itemCount: quizProvider.categories.length > 6
+                        ? 6
+                        : quizProvider.categories.length,
                     itemBuilder: (context, index) {
                       final category = quizProvider.categories[index];
                       return FeaturedQuizCard(
