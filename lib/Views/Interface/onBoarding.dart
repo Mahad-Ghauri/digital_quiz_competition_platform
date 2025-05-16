@@ -15,56 +15,54 @@ class _OnboardingState extends State<Onboarding> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: Stack(
-          children: [
-            SizedBox(
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
-              child: Image.asset(
-                'assets/images/background.jpg',
-                fit: BoxFit.cover,
-              ),
+      body: Stack(
+        children: [
+          SizedBox(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            child: Image.asset(
+              'assets/images/background.jpg',
+              fit: BoxFit.cover,
             ),
-            Center(child: Image.asset('assets/images/logo.png')),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Center(
-                  child: Container(
-                    height: 50,
-                    width: MediaQuery.of(context).size.width / 2,
-                    decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(.6),
-                      borderRadius: BorderRadius.circular(10),
+          ),
+          Center(child: Image.asset('assets/images/logo.png')),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Center(
+                child: Container(
+                  height: 50,
+                  width: MediaQuery.of(context).size.width / 2,
+                  decoration: BoxDecoration(
+                    color: Colors.tealAccent.withOpacity(.6),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  margin: const EdgeInsets.only(bottom: 120.0),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(
+                        context,
+                      ).push(_elegantRoute(const AuthGate()));
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.lightBlueAccent[900],
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                     ),
-                    margin: EdgeInsets.only(bottom: 120.0),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.of(
-                          context,
-                        ).push(_elegantRoute(const AuthGate()));
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.tealAccent[900],
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                      child: const Text(
-                        "Get Started",
-                        style: TextStyle(
-                            fontSize: 18,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold),
-                      ),
+                    child: const Text(
+                      "Get Started",
+                      style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),
-              ],
-            ),
-          ],
-        ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
