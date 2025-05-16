@@ -1,11 +1,19 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:digital_quiz_competition_platform/Controllers/Authentication/authentication_controller.dart';
+import 'package:digital_quiz_competition_platform/Providers/language_provider.dart';
+import 'package:digital_quiz_competition_platform/Providers/notification_provider.dart';
+import 'package:digital_quiz_competition_platform/Providers/sound_provider.dart';
+import 'package:digital_quiz_competition_platform/Providers/user_profile_provider.dart';
 import 'package:digital_quiz_competition_platform/Views/Authentication/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:provider/provider.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
+import 'package:digital_quiz_competition_platform/Providers/theme_provider.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -15,10 +23,8 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  bool _notificationsEnabled = true;
-  bool _darkModeEnabled = false;
-  String _selectedLanguage = 'English';
-  double _soundVolume = 0.7;
+  File? _profileImage;
+  final ImagePicker _picker = ImagePicker();
 
   final List<String> _languages = [
     'English',
@@ -31,26 +37,38 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   void initState() {
     super.initState();
-    _loadSettings();
+    _loadProfileImage();
   }
 
-  Future<void> _loadSettings() async {
-    final prefs = await SharedPreferences.getInstance();
-    setState(() {
-      _notificationsEnabled = prefs.getBool('notifications_enabled') ?? true;
-      _darkModeEnabled = prefs.getBool('dark_mode_enabled') ?? false;
-      _selectedLanguage = prefs.getString('selected_language') ?? 'English';
-      _soundVolume = prefs.getDouble('sound_volume') ?? 0.7;
-    });
+  Future<void> _loadProfileImage() async {
+    final userProfileProvider =
+        Provider.of<UserProfileProvider>(context, listen: false);
+    final imagePath = userProfileProvider.userProfile.profileImagePath;
+
+    if (imagePath != null) {
+      setState(() {
+        _profileImage = File(imagePath);
+      });
+    }
+  }
+
+  Future<void> _pickImage() async {
+    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+
+    if (image != null) {
+      setState(() {
+        _profileImage = File(image.path);
+      });
+
+      // Update the user profile with the new image path
+      final userProfileProvider =
+          Provider.of<UserProfileProvider>(context, listen: false);
+      await userProfileProvider.updateUserProfile(profileImagePath: image.path);
+    }
   }
 
   Future<void> _saveSettings() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool('notifications_enabled', _notificationsEnabled);
-    await prefs.setBool('dark_mode_enabled', _darkModeEnabled);
-    await prefs.setString('selected_language', _selectedLanguage);
-    await prefs.setDouble('sound_volume', _soundVolume);
-
+    // The providers will handle saving the settings
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text('Settings saved successfully'),
@@ -62,6 +80,12 @@ class _SettingsPageState extends State<SettingsPage> {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+    final languageProvider = Provider.of<LanguageProvider>(context);
+    final notificationProvider = Provider.of<NotificationProvider>(context);
+    final soundProvider = Provider.of<SoundProvider>(context);
+    final userProfileProvider = Provider.of<UserProfileProvider>(context);
+
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -77,7 +101,7 @@ class _SettingsPageState extends State<SettingsPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Settings",
+                  languageProvider.translate('settings'),
                   style: GoogleFonts.poppins(
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
@@ -88,7 +112,9 @@ class _SettingsPageState extends State<SettingsPage> {
                 Expanded(
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.9),
+                      color: themeProvider.isDarkMode
+                          ? Colors.grey.shade900.withOpacity(0.9)
+                          : Colors.white.withOpacity(0.9),
                       borderRadius: BorderRadius.circular(20),
                       boxShadow: [
                         BoxShadow(
@@ -101,66 +127,60 @@ class _SettingsPageState extends State<SettingsPage> {
                     child: ListView(
                       padding: const EdgeInsets.all(20),
                       children: [
-                        _buildProfileSection(),
+                        _buildProfileSection(userProfileProvider),
                         const Divider(height: 30),
                         _buildToggleSetting(
                           icon: Icons.notifications,
-                          title: "Notifications",
-                          subtitle: "Receive quiz reminders and updates",
-                          value: _notificationsEnabled,
+                          title: languageProvider.translate('notifications'),
+                          subtitle:
+                              languageProvider.translate('receiveUpdates'),
+                          value: notificationProvider.notificationsEnabled,
                           onChanged: (value) {
-                            setState(() {
-                              _notificationsEnabled = value;
-                            });
+                            notificationProvider.toggleNotifications(value);
                           },
                         ),
                         _buildToggleSetting(
                           icon: Icons.dark_mode,
-                          title: "Dark Mode",
-                          subtitle: "Switch between light and dark themes",
-                          value: _darkModeEnabled,
+                          title: languageProvider.translate('darkMode'),
+                          subtitle: languageProvider.translate('switchThemes'),
+                          value: themeProvider.isDarkMode,
                           onChanged: (value) {
-                            setState(() {
-                              _darkModeEnabled = value;
-                            });
+                            themeProvider.toggleTheme(value);
                           },
                         ),
                         _buildDropdownSetting(
                           icon: Icons.language,
-                          title: "Language",
-                          subtitle: "Choose your preferred language",
-                          value: _selectedLanguage,
+                          title: languageProvider.translate('language'),
+                          subtitle:
+                              languageProvider.translate('chooseLanguage'),
+                          value: languageProvider.currentLanguage,
                           items: _languages,
                           onChanged: (value) {
                             if (value != null) {
-                              setState(() {
-                                _selectedLanguage = value;
-                              });
+                              languageProvider.setLanguage(value);
                             }
                           },
                         ),
                         _buildSliderSetting(
                           icon: Icons.volume_up,
-                          title: "Sound Volume",
-                          subtitle: "Adjust game sound effects",
-                          value: _soundVolume,
+                          title: languageProvider.translate('soundVolume'),
+                          subtitle: languageProvider.translate('adjustSound'),
+                          value: soundProvider.volume,
                           onChanged: (value) {
-                            setState(() {
-                              _soundVolume = value;
-                            });
+                            soundProvider.setVolume(value);
                           },
                         ),
                         const SizedBox(height: 10),
                         _buildSettingItem(
                           icon: Icons.help,
-                          title: "Help & Support",
-                          subtitle: "Get help and contact support",
+                          title: languageProvider.translate('help'),
+                          subtitle: languageProvider.translate('getHelp'),
                           onTap: _showHelpDialog,
                         ),
                         _buildSettingItem(
                           icon: Icons.info,
-                          title: "About",
-                          subtitle: "Learn more about the app",
+                          title: languageProvider.translate('about'),
+                          subtitle: languageProvider.translate('learnMore'),
                           onTap: _showAboutDialog,
                         ),
                         const SizedBox(height: 20),
@@ -175,7 +195,7 @@ class _SettingsPageState extends State<SettingsPage> {
                             ),
                           ),
                           child: Text(
-                            "Save Settings",
+                            languageProvider.translate('saveSettings'),
                             style: GoogleFonts.poppins(
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
@@ -194,7 +214,7 @@ class _SettingsPageState extends State<SettingsPage> {
                             ),
                             child: Center(
                               child: Text(
-                                "Log Out",
+                                languageProvider.translate('logout'),
                                 style: GoogleFonts.poppins(
                                   color: Colors.red,
                                   fontSize: 16,
@@ -220,7 +240,10 @@ class _SettingsPageState extends State<SettingsPage> {
     );
   }
 
-  Widget _buildProfileSection() {
+  Widget _buildProfileSection(UserProfileProvider userProfileProvider) {
+    final languageProvider =
+        Provider.of<LanguageProvider>(context, listen: false);
+
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -229,18 +252,26 @@ class _SettingsPageState extends State<SettingsPage> {
       ),
       child: Column(
         children: [
-          const CircleAvatar(
-            radius: 40,
-            backgroundColor: Colors.blue,
-            child: Icon(
-              Icons.person,
-              size: 40,
-              color: Colors.white,
-            ),
+          GestureDetector(
+            onTap: _pickImage,
+            child: _profileImage != null
+                ? CircleAvatar(
+                    radius: 40,
+                    backgroundImage: FileImage(_profileImage!),
+                  )
+                : const CircleAvatar(
+                    radius: 40,
+                    backgroundColor: Colors.blue,
+                    child: Icon(
+                      Icons.person,
+                      size: 40,
+                      color: Colors.white,
+                    ),
+                  ),
           ),
           const SizedBox(height: 15),
           Text(
-            "John Doe",
+            userProfileProvider.userProfile.name,
             style: GoogleFonts.poppins(
               fontSize: 20,
               fontWeight: FontWeight.bold,
@@ -256,7 +287,7 @@ class _SettingsPageState extends State<SettingsPage> {
           ),
           const SizedBox(height: 15),
           OutlinedButton(
-            onPressed: _editProfile,
+            onPressed: () => _editProfile(userProfileProvider),
             style: OutlinedButton.styleFrom(
               side: const BorderSide(color: Colors.blue),
               shape: RoundedRectangleBorder(
@@ -264,7 +295,7 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
             ),
             child: Text(
-              "Edit Profile",
+              languageProvider.translate('editProfile'),
               style: GoogleFonts.poppins(
                 color: Colors.blue,
                 fontWeight: FontWeight.w500,
@@ -511,30 +542,53 @@ class _SettingsPageState extends State<SettingsPage> {
     );
   }
 
-  void _editProfile() {
+  void _editProfile(UserProfileProvider userProfileProvider) {
+    final languageProvider =
+        Provider.of<LanguageProvider>(context, listen: false);
+    final nameController =
+        TextEditingController(text: userProfileProvider.userProfile.name);
+    final usernameController =
+        TextEditingController(text: userProfileProvider.userProfile.username);
+
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
         title: Text(
-          "Edit Profile",
+          languageProvider.translate('editProfile'),
           style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
         ),
         content: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const CircleAvatar(
-                radius: 40,
-                backgroundColor: Colors.blue,
-                child: Icon(
-                  Icons.person,
-                  size: 40,
-                  color: Colors.white,
-                ),
+              GestureDetector(
+                onTap: () async {
+                  Navigator.pop(context);
+                  await _pickImage();
+                  _editProfile(userProfileProvider);
+                },
+                child: _profileImage != null
+                    ? CircleAvatar(
+                        radius: 40,
+                        backgroundImage: FileImage(_profileImage!),
+                      )
+                    : const CircleAvatar(
+                        radius: 40,
+                        backgroundColor: Colors.blue,
+                        child: Icon(
+                          Icons.person,
+                          size: 40,
+                          color: Colors.white,
+                        ),
+                      ),
               ),
               const SizedBox(height: 15),
               TextButton(
-                onPressed: () {},
+                onPressed: () async {
+                  Navigator.pop(context);
+                  await _pickImage();
+                  _editProfile(userProfileProvider);
+                },
                 child: Text(
                   "Change Profile Picture",
                   style: GoogleFonts.poppins(color: Colors.blue),
@@ -548,7 +602,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
-                controller: TextEditingController(text: "John Doe"),
+                controller: nameController,
               ),
               const SizedBox(height: 15),
               TextField(
@@ -558,7 +612,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
-                controller: TextEditingController(text: "johndoe123"),
+                controller: usernameController,
               ),
             ],
           ),
@@ -572,7 +626,12 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
           ),
           ElevatedButton(
-            onPressed: () {
+            onPressed: () async {
+              await userProfileProvider.updateUserProfile(
+                name: nameController.text,
+                username: usernameController.text,
+              );
+
               Navigator.pop(context);
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
@@ -598,11 +657,18 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 
   void _showHelpDialog() {
+    final languageProvider =
+        Provider.of<LanguageProvider>(context, listen: false);
+    final soundProvider = Provider.of<SoundProvider>(context, listen: false);
+
+    // Play a sound effect when opening the dialog
+    soundProvider.playSound('dialog_open');
+
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
         title: Text(
-          "Help & Support",
+          languageProvider.translate('help'),
           style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
         ),
         content: SingleChildScrollView(
@@ -629,7 +695,30 @@ class _SettingsPageState extends State<SettingsPage> {
               const SizedBox(height: 15),
               Center(
                 child: ElevatedButton.icon(
-                  onPressed: () {},
+                  onPressed: () {
+                    // Play a sound effect when clicking the button
+                    soundProvider.playSound('button_click');
+
+                    // Show a notification if notifications are enabled
+                    final notificationProvider =
+                        Provider.of<NotificationProvider>(context,
+                            listen: false);
+                    if (notificationProvider.notificationsEnabled) {
+                      notificationProvider.showNotification(
+                        title: 'Support Request',
+                        body:
+                            'Your support request has been sent. We\'ll get back to you soon.',
+                      );
+                    }
+
+                    Navigator.pop(context);
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Support request sent!'),
+                        backgroundColor: Colors.green,
+                      ),
+                    );
+                  },
                   icon: const Icon(Icons.email),
                   label: Text(
                     "Contact Support",
@@ -687,11 +776,19 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 
   void _showAboutDialog() {
+    final languageProvider =
+        Provider.of<LanguageProvider>(context, listen: false);
+    final soundProvider = Provider.of<SoundProvider>(context, listen: false);
+    final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
+
+    // Play a sound effect when opening the dialog
+    soundProvider.playSound('dialog_open');
+
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
         title: Text(
-          "About Quiz App",
+          languageProvider.translate('about'),
           style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
         ),
         content: SingleChildScrollView(
@@ -709,7 +806,7 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
               const SizedBox(height: 15),
               Text(
-                "Quiz App v1.0.0",
+                "Quizizen v1.0.0",
                 style: GoogleFonts.poppins(
                   fontWeight: FontWeight.w600,
                   fontSize: 16,
@@ -717,10 +814,12 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
               const SizedBox(height: 10),
               Text(
-                "Quiz App is an interactive platform for testing your knowledge across various categories. Challenge yourself with questions from different fields and compete with others on the leaderboard.",
+                "Quizizen is an interactive platform for testing your knowledge across various categories. Challenge yourself with questions from different fields and compete with others on the leaderboard.",
                 style: GoogleFonts.poppins(
                   fontSize: 14,
-                  color: Colors.grey.shade700,
+                  color: themeProvider.isDarkMode
+                      ? Colors.grey.shade300
+                      : Colors.grey.shade700,
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -728,9 +827,36 @@ class _SettingsPageState extends State<SettingsPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  _buildSocialButton(Icons.language, "Website"),
-                  _buildSocialButton(Icons.privacy_tip, "Privacy"),
-                  _buildSocialButton(Icons.description, "Terms"),
+                  _buildSocialButton(Icons.language, "Website", () {
+                    soundProvider.playSound('button_click');
+                    Navigator.pop(context);
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Opening website...'),
+                        backgroundColor: Colors.blue,
+                      ),
+                    );
+                  }),
+                  _buildSocialButton(Icons.privacy_tip, "Privacy", () {
+                    soundProvider.playSound('button_click');
+                    Navigator.pop(context);
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Opening privacy policy...'),
+                        backgroundColor: Colors.blue,
+                      ),
+                    );
+                  }),
+                  _buildSocialButton(Icons.description, "Terms", () {
+                    soundProvider.playSound('button_click');
+                    Navigator.pop(context);
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Opening terms of service...'),
+                        backgroundColor: Colors.blue,
+                      ),
+                    );
+                  }),
                 ],
               ),
             ],
@@ -738,7 +864,10 @@ class _SettingsPageState extends State<SettingsPage> {
         ),
         actions: [
           TextButton(
-            onPressed: () => Navigator.pop(context),
+            onPressed: () {
+              soundProvider.playSound('button_click');
+              Navigator.pop(context);
+            },
             child: Text(
               "Close",
               style: GoogleFonts.poppins(),
@@ -749,11 +878,13 @@ class _SettingsPageState extends State<SettingsPage> {
     );
   }
 
-  Widget _buildSocialButton(IconData icon, String label) {
+  Widget _buildSocialButton(IconData icon, String label, VoidCallback onTap) {
+    final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
+
     return Column(
       children: [
         IconButton(
-          onPressed: () {},
+          onPressed: onTap,
           icon: Icon(icon),
           color: Colors.blue,
         ),
@@ -761,7 +892,9 @@ class _SettingsPageState extends State<SettingsPage> {
           label,
           style: GoogleFonts.poppins(
             fontSize: 12,
-            color: Colors.grey.shade700,
+            color: themeProvider.isDarkMode
+                ? Colors.grey.shade300
+                : Colors.grey.shade700,
           ),
         ),
       ],
@@ -769,6 +902,13 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 
   void _confirmLogout() {
+    final languageProvider =
+        Provider.of<LanguageProvider>(context, listen: false);
+    final soundProvider = Provider.of<SoundProvider>(context, listen: false);
+
+    // Play a sound effect when opening the dialog
+    soundProvider.playSound('dialog_open');
+
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -782,7 +922,10 @@ class _SettingsPageState extends State<SettingsPage> {
         ),
         actions: [
           TextButton(
-            onPressed: () => Navigator.pop(context),
+            onPressed: () {
+              soundProvider.playSound('button_click');
+              Navigator.pop(context);
+            },
             child: Text(
               "Cancel",
               style: GoogleFonts.poppins(),
@@ -790,6 +933,7 @@ class _SettingsPageState extends State<SettingsPage> {
           ),
           ElevatedButton(
             onPressed: () {
+              soundProvider.playSound('button_click');
               Navigator.pop(context);
               _logout();
             },
@@ -812,6 +956,25 @@ class _SettingsPageState extends State<SettingsPage> {
 
   void _logout() async {
     try {
+      // Save all settings before logging out
+      final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
+      final languageProvider =
+          Provider.of<LanguageProvider>(context, listen: false);
+      final notificationProvider =
+          Provider.of<NotificationProvider>(context, listen: false);
+      final soundProvider = Provider.of<SoundProvider>(context, listen: false);
+
+      // Play a logout sound
+      soundProvider.playSound('logout');
+
+      // Show a notification if enabled
+      if (notificationProvider.notificationsEnabled) {
+        notificationProvider.showNotification(
+          title: 'Logged Out',
+          body: 'You have been successfully logged out.',
+        );
+      }
+
       await AuthenticationController().signOutAndEndSession(context);
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -822,4 +985,5 @@ class _SettingsPageState extends State<SettingsPage> {
       );
     }
   }
+
 }

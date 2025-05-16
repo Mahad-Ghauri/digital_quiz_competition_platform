@@ -2,6 +2,11 @@ import 'dart:developer';
 
 import 'package:digital_quiz_competition_platform/Views/Auth%20Gate/auth_gate.dart';
 import 'package:digital_quiz_competition_platform/Providers/quiz_provider.dart';
+import 'package:digital_quiz_competition_platform/Providers/theme_provider.dart';
+import 'package:digital_quiz_competition_platform/Providers/user_profile_provider.dart';
+import 'package:digital_quiz_competition_platform/Providers/language_provider.dart';
+import 'package:digital_quiz_competition_platform/Providers/notification_provider.dart';
+import 'package:digital_quiz_competition_platform/Providers/sound_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:digital_quiz_competition_platform/Utils/consts.dart';
 import 'package:digital_quiz_competition_platform/Views/Interface/onBoarding.dart';
@@ -28,6 +33,11 @@ Future<void> main() async {
                 MultiProvider(
                   providers: [
                     ChangeNotifierProvider(create: (context) => QuizProvider()),
+                    ChangeNotifierProvider(create: (context) => ThemeProvider()),
+                    ChangeNotifierProvider(create: (context) => UserProfileProvider()),
+                    ChangeNotifierProvider(create: (context) => LanguageProvider()),
+                    ChangeNotifierProvider(create: (context) => NotificationProvider()),
+                    ChangeNotifierProvider(create: (context) => SoundProvider()),
                   ],
                   child: const MyApp(),
                 ),
@@ -48,13 +58,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+    final languageProvider = Provider.of<LanguageProvider>(context);
+    
     return MaterialApp(
       title: 'Quizizen',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.amber,
-        scaffoldBackgroundColor: Colors.grey.shade100,
-      ),
+      theme: themeProvider.getTheme(),
       home: const Onboarding(),
     );
   }
