@@ -84,13 +84,8 @@ class QuizProvider with ChangeNotifier {
 
     if (selectedAnswer == currentQuestion!.correctAnswer) {
       _score += currentQuestion!.points;
+      notifyListeners();
     }
-
-    if (_currentQuestionIndex < _questions.length - 1) {
-      _currentQuestionIndex++;
-    }
-
-    notifyListeners();
   }
 
   void moveToNextQuestion() {
@@ -113,7 +108,6 @@ class QuizProvider with ChangeNotifier {
     } catch (e) {
       return null;
     }
-    
   }
 
   CategoryModel? get currentCategory {

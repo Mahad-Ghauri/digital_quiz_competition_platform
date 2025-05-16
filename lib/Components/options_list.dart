@@ -175,15 +175,19 @@ class _OptionsListState extends State<OptionsList> {
   }
 
   void _selectOption(String option) {
+    final correctAnswer = widget.quizProvider.currentQuestion!.correctAnswer;
+    final isCorrectAnswer = option == correctAnswer;
+
     setState(() {
       selectedOption = option;
       answerChecked = true;
-      isCorrect = option == widget.quizProvider.currentQuestion!.correctAnswer;
+      isCorrect = isCorrectAnswer;
     });
 
+    // Only update the score in the provider, don't move to next question
     widget.quizProvider.answerQuestion(option);
 
-    if (isCorrect) {
+    if (isCorrectAnswer) {
       widget.onCorrectAnswer();
     }
   }
@@ -191,12 +195,17 @@ class _OptionsListState extends State<OptionsList> {
   void _moveToNextQuestion() {
     if (widget.quizProvider.currentQuestionIndex >=
         widget.quizProvider.questions.length - 1) {
+      // This is the last question, show completion dialog
       widget.onQuizComplete();
     } else {
+      // Move to the next question
       widget.quizProvider.moveToNextQuestion();
+
+      // Reset the state for the new question
       setState(() {
         selectedOption = null;
         answerChecked = false;
+        isCorrect = false;
       });
     }
   }

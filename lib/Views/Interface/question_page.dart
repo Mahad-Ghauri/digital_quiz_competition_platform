@@ -80,7 +80,7 @@ class _QuestionPageState extends State<QuestionPage>
 
           // Update progress animation when question changes
           _updateProgressAnimation(quizProvider);
-
+  
           return Stack(
             children: [
               // Background with gradient
