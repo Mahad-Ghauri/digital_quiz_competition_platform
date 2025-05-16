@@ -46,12 +46,18 @@ class _OnboardingState extends State<Onboarding> {
                         ).push(_elegantRoute(const AuthGate()));
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blue[900],
+                        backgroundColor: Colors.tealAccent[900],
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
-                      child: Text("Get Started"),
+                      child: const Text(
+                        "Get Started",
+                        style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold),
+                      ),
                     ),
                   ),
                 ),
