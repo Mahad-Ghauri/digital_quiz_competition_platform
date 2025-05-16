@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import '../../Components/category_card.dart';
 import '../../Components/featured_quiz_card.dart';
 import '../../Components/bottom_nav_bar.dart';
-import '../../providers/quiz_provider.dart';
+import '../../Providers/quiz_provider.dart';
 import 'search_page.dart';
 import 'leaderboard_page.dart';
 import 'settings_page.dart';

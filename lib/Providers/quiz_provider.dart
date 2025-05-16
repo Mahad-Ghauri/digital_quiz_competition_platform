@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import '../models/category_model.dart';
-import '../models/question_model.dart';
+import '../Models/category_model.dart';
+import '../Models/question_model.dart';
 
 class QuizProvider with ChangeNotifier {
   final SupabaseClient _supabase = Supabase.instance.client;
@@ -113,6 +113,7 @@ class QuizProvider with ChangeNotifier {
     } catch (e) {
       return null;
     }
+    
   }
 
   CategoryModel? get currentCategory {

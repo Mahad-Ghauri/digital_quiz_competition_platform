@@ -6,10 +6,10 @@ import 'package:provider/provider.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:confetti/confetti.dart';
 import 'dart:math';
-import '../../providers/quiz_provider.dart';
-import '../../components/result_card.dart';
-import '../../components/options_list.dart';
-import '../../components/quiz_views.dart';
+import '../../Providers/quiz_provider.dart';
+import '../../Components/result_card.dart';
+import '../../Components/options_list.dart';
+import '../../Components/quiz_views.dart';
 
 class QuestionPage extends StatefulWidget {
   const QuestionPage({super.key});

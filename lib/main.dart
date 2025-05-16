@@ -1,8 +1,7 @@
 import 'dart:developer';
 
-// import 'package:auth_screens/Controllers/API%20Services/Chatbot/chat_bot_controller.dart';
-// import 'package:digital_quiz_competition_platform/Views/Auth%20Gate/auth_gate.dart';
-import 'package:digital_quiz_competition_platform/providers/quiz_provider.dart';
+import 'package:digital_quiz_competition_platform/Views/Auth%20Gate/auth_gate.dart';
+import 'package:digital_quiz_competition_platform/Providers/quiz_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:digital_quiz_competition_platform/Utils/consts.dart';
 import 'package:digital_quiz_competition_platform/Views/Interface/onBoarding.dart';
@@ -13,7 +12,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 Future<void> main() async {
   //  Initialize the Widget Binding
-  // WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
 
   //  Firebase Setup
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)
