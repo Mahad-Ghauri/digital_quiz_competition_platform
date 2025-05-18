@@ -17,7 +17,7 @@ class AuthGate extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Scaffold(
             body: Center(
-              child: CircularProgressIndicator(color: Colors.yellow.shade900),
+              child: CircularProgressIndicator(color: Colors.purpleAccent.withOpacity(0.8)),
             ),
           );
         }

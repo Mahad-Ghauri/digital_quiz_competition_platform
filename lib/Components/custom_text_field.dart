@@ -32,7 +32,7 @@ class CustomTextField extends StatelessWidget {
       style: TextStyle(color: Theme.of(context).colorScheme.onBackground),
       decoration: InputDecoration(
         labelText: label,
-        prefixIcon: Icon(prefixIcon, color: Colors.yellow.shade800),
+        prefixIcon: Icon(prefixIcon, color: Colors.purpleAccent.withOpacity(0.8)),
         suffixIcon: suffixIcon,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
@@ -48,7 +48,7 @@ class CustomTextField extends StatelessWidget {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: Colors.yellow.shade800, width: 2),
+          borderSide: BorderSide(color: Colors.purpleAccent.withOpacity(0.8), width: 2),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),

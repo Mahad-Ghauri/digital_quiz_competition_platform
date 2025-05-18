@@ -129,8 +129,8 @@ class _LoginPageState extends State<LoginScreen> with TickerProviderStateMixin {
     Navigator.push(
       context,
       PageRouteBuilder(
-        pageBuilder:
-            (context, animation, secondaryAnimation) => const SignupScreen(),
+        pageBuilder: (context, animation, secondaryAnimation) =>
+            const SignupScreen(),
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
           const begin = Offset(1.0, 0.0);
           const end = Offset.zero;
@@ -267,10 +267,9 @@ class _LoginPageState extends State<LoginScreen> with TickerProviderStateMixin {
                                           GoogleFonts.italiana().fontFamily,
                                       fontSize: height * 0.038,
                                       fontWeight: FontWeight.bold,
-                                      color:
-                                          Theme.of(
-                                            context,
-                                          ).colorScheme.onBackground,
+                                      color: Theme.of(
+                                        context,
+                                      ).colorScheme.onBackground,
                                     ),
                                   ),
                                 ),
@@ -346,7 +345,8 @@ class _LoginPageState extends State<LoginScreen> with TickerProviderStateMixin {
                                     onPressed: () {
                                       Navigator.of(
                                         context,
-                                      ).push(_elegantRoute(const ForgotPassword()));
+                                      ).push(_elegantRoute(
+                                          const ForgotPassword()));
                                     },
                                     style: TextButton.styleFrom(
                                       foregroundColor: Colors.purpleAccent[800],
@@ -373,33 +373,31 @@ class _LoginPageState extends State<LoginScreen> with TickerProviderStateMixin {
                                   child: ElevatedButton(
                                     onPressed: _isLoading ? null : _login,
                                     style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.purpleAccent[800],
+                                      backgroundColor: Colors.purpleAccent,
                                       foregroundColor: Colors.white,
                                       elevation: 0,
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(12),
                                       ),
                                     ),
-                                    child:
-                                        _isLoading
-                                            ? const SizedBox(
-                                              width: 24,
-                                              height: 24,
-                                              child: CircularProgressIndicator(
-                                                strokeWidth: 2,
-                                                valueColor:
-                                                    AlwaysStoppedAnimation<
-                                                      Color
-                                                    >(Colors.white),
-                                              ),
-                                            )
-                                            : const Text(
-                                              'Login',
-                                              style: TextStyle(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.bold,
-                                              ),
+                                    child: _isLoading
+                                        ? const SizedBox(
+                                            width: 24,
+                                            height: 24,
+                                            child: CircularProgressIndicator(
+                                              strokeWidth: 2,
+                                              valueColor:
+                                                  AlwaysStoppedAnimation<Color>(
+                                                      Colors.purpleAccent),
                                             ),
+                                          )
+                                        : const Text(
+                                            'Login',
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
                                   ),
                                 ),
                               ],
