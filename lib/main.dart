@@ -1,7 +1,6 @@
 // ignore_for_file: unused_local_variable
 
 import 'dart:developer';
-
 import 'package:digital_quiz_competition_platform/Controllers/search_controller.dart';
 import 'package:digital_quiz_competition_platform/Providers/quiz_provider.dart';
 import 'package:digital_quiz_competition_platform/Providers/theme_provider.dart';
@@ -13,7 +12,6 @@ import 'package:digital_quiz_competition_platform/Providers/leaderboard_provider
 import 'package:digital_quiz_competition_platform/Services/supabase_service.dart';
 import 'package:provider/provider.dart';
 import 'package:digital_quiz_competition_platform/Utils/consts.dart';
-import 'package:digital_quiz_competition_platform/Views/Interface/onboarding.dart';
 import 'package:digital_quiz_competition_platform/Views/dashboard.dart';
 import 'package:digital_quiz_competition_platform/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';

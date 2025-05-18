@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use, unused_local_variable
+
 import 'package:digital_quiz_competition_platform/Controllers/search_controller.dart';
 import 'package:digital_quiz_competition_platform/Models/quiz_model.dart';
 import 'package:flutter/material.dart';

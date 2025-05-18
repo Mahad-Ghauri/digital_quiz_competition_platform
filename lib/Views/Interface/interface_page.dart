@@ -1,5 +1,7 @@
 // ignore_for_file: deprecated_member_use, use_build_context_synchronously
 
+import 'package:digital_quiz_competition_platform/Views/Search/search_page.dart'
+    show SearchPage;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -7,7 +9,6 @@ import '../../Components/category_card.dart';
 import '../../Components/featured_quiz_card.dart';
 import '../../Components/bottom_nav_bar.dart';
 import '../../Providers/quiz_provider.dart';
-import 'search_page.dart';
 import 'leaderboard_page.dart';
 import 'settings_page.dart';
 import 'question_page.dart';

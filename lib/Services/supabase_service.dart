@@ -1,3 +1,5 @@
+// ignore_for_file: unused_field
+
 import 'package:digital_quiz_competition_platform/Models/quiz_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
