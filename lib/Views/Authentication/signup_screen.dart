@@ -187,7 +187,7 @@ class _RegisterPageState extends State<SignupScreen>
                         begin: Alignment.topRight,
                         end: Alignment.bottomLeft,
                         colors: [
-                          Colors.yellow.shade800.withOpacity(0.2),
+                          Colors.purpleAccent.withOpacity(0.2),
                           Colors.deepPurple.withOpacity(0.1),
                           Colors.blue.shade900.withOpacity(0.1),
                         ],
@@ -222,7 +222,7 @@ class _RegisterPageState extends State<SignupScreen>
                               shape: BoxShape.circle,
                               boxShadow: [
                                 BoxShadow(
-                                  color: Colors.yellow.shade800.withOpacity(
+                                  color: Colors.purpleAccent.withOpacity(
                                     0.3,
                                   ),
                                   blurRadius: 20,
@@ -230,11 +230,11 @@ class _RegisterPageState extends State<SignupScreen>
                                 ),
                               ],
                             ),
-                            child: Center(
+                            child: const Center(
                               child: Icon(
                                 Iconsax.book,
                                 size: 60,
-                                color: Colors.yellow.shade800,
+                                color: Colors.purpleAccent,
                               ),
                             ),
                           ),
@@ -263,7 +263,7 @@ class _RegisterPageState extends State<SignupScreen>
                               ),
                             ],
                             border: Border.all(
-                              color: Colors.yellow.shade800.withOpacity(0.1),
+                              color: Colors.purpleAccent.withOpacity(0.1),
                               width: 1,
                             ),
                           ),
@@ -346,7 +346,7 @@ class _RegisterPageState extends State<SignupScreen>
                                       _obscurePassword
                                           ? Icons.visibility_off
                                           : Icons.visibility,
-                                      color: Colors.yellow.shade800,
+                                      color: Colors.purpleAccent,
                                     ),
                                     onPressed: () {
                                       setState(() {
@@ -379,7 +379,7 @@ class _RegisterPageState extends State<SignupScreen>
                                       _obscureConfirmPassword
                                           ? Icons.visibility_off
                                           : Icons.visibility,
-                                      color: Colors.yellow.shade800,
+                                      color: Colors.purpleAccent,
                                     ),
                                     onPressed: () {
                                       setState(() {
@@ -417,7 +417,7 @@ class _RegisterPageState extends State<SignupScreen>
                                             _acceptTerms = value ?? false;
                                           });
                                         },
-                                        activeColor: Colors.yellow.shade800,
+                                        activeColor: Colors.purpleAccent,
                                         shape: RoundedRectangleBorder(
                                           borderRadius: BorderRadius.circular(
                                             4,
@@ -450,7 +450,7 @@ class _RegisterPageState extends State<SignupScreen>
                                   child: ElevatedButton(
                                     onPressed: _isLoading ? null : _register,
                                     style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.yellow.shade800,
+                                      backgroundColor: Colors.purpleAccent,
                                       foregroundColor: Colors.white,
                                       elevation: 0,
                                       shape: RoundedRectangleBorder(
@@ -505,7 +505,7 @@ class _RegisterPageState extends State<SignupScreen>
                           TextButton(
                             onPressed: _navigateToLogin,
                             style: TextButton.styleFrom(
-                              foregroundColor: Colors.yellow.shade800,
+                              foregroundColor: Colors.purpleAccent,
                               padding: EdgeInsets.zero,
                               minimumSize: const Size(50, 30),
                               tapTargetSize: MaterialTapTargetSize.shrinkWrap,
@@ -551,7 +551,7 @@ class _RegisterPageState extends State<SignupScreen>
                 height: 150,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: Colors.yellow.shade800.withOpacity(0.1),
+                  color: Colors.purpleAccent.withOpacity(0.1),
                 ),
               ),
             ),
@@ -566,7 +566,7 @@ class _RegisterPageState extends State<SignupScreen>
                 height: 200,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: Colors.yellow.shade800.withOpacity(0.1),
+                  color: Colors.purpleAccent.withOpacity(0.1),
                 ),
               ),
             ),

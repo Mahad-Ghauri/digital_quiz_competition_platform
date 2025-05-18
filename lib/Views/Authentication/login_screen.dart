@@ -174,7 +174,7 @@ class _LoginPageState extends State<LoginScreen> with TickerProviderStateMixin {
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                         colors: [
-                          Colors.yellow.shade800.withOpacity(0.2),
+                          Colors.purpleAccent.withOpacity(0.2),
                           Colors.deepPurple.withOpacity(0.1),
                           Colors.blue.shade900.withOpacity(0.1),
                         ],
@@ -209,7 +209,7 @@ class _LoginPageState extends State<LoginScreen> with TickerProviderStateMixin {
                               shape: BoxShape.circle,
                               boxShadow: [
                                 BoxShadow(
-                                  color: Colors.yellow.shade800.withOpacity(
+                                  color: Colors.purpleAccent.withOpacity(
                                     0.3,
                                   ),
                                   blurRadius: 20,
@@ -217,11 +217,11 @@ class _LoginPageState extends State<LoginScreen> with TickerProviderStateMixin {
                                 ),
                               ],
                             ),
-                            child: Center(
+                            child: const Center(
                               child: Icon(
                                 Iconsax.book,
                                 size: 70,
-                                color: Colors.yellow.shade800,
+                                color: Colors.purpleAccent,
                               ),
                             ),
                           ),
@@ -250,7 +250,7 @@ class _LoginPageState extends State<LoginScreen> with TickerProviderStateMixin {
                               ),
                             ],
                             border: Border.all(
-                              color: Colors.yellow.shade800.withOpacity(0.1),
+                              color: Colors.purpleAccent.withOpacity(0.1),
                               width: 1,
                             ),
                           ),
@@ -323,7 +323,7 @@ class _LoginPageState extends State<LoginScreen> with TickerProviderStateMixin {
                                       _obscurePassword
                                           ? Icons.visibility_off
                                           : Icons.visibility,
-                                      color: Colors.yellow.shade800,
+                                      color: Colors.purpleAccent,
                                     ),
                                     onPressed: () {
                                       setState(() {
@@ -349,7 +349,7 @@ class _LoginPageState extends State<LoginScreen> with TickerProviderStateMixin {
                                       ).push(_elegantRoute(const ForgotPassword()));
                                     },
                                     style: TextButton.styleFrom(
-                                      foregroundColor: Colors.yellow.shade800,
+                                      foregroundColor: Colors.purpleAccent[800],
                                       padding: EdgeInsets.zero,
                                       minimumSize: const Size(50, 30),
                                       tapTargetSize:
@@ -373,7 +373,7 @@ class _LoginPageState extends State<LoginScreen> with TickerProviderStateMixin {
                                   child: ElevatedButton(
                                     onPressed: _isLoading ? null : _login,
                                     style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.yellow.shade800,
+                                      backgroundColor: Colors.purpleAccent[800],
                                       foregroundColor: Colors.white,
                                       elevation: 0,
                                       shape: RoundedRectangleBorder(
@@ -428,7 +428,7 @@ class _LoginPageState extends State<LoginScreen> with TickerProviderStateMixin {
                           TextButton(
                             onPressed: _navigateToRegister,
                             style: TextButton.styleFrom(
-                              foregroundColor: Colors.yellow.shade800,
+                              foregroundColor: Colors.purpleAccent,
                               padding: EdgeInsets.zero,
                               minimumSize: const Size(50, 30),
                               tapTargetSize: MaterialTapTargetSize.shrinkWrap,
@@ -458,7 +458,7 @@ class _LoginPageState extends State<LoginScreen> with TickerProviderStateMixin {
                 height: 150,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: Colors.yellow.shade800.withOpacity(0.1),
+                  color: Colors.purpleAccent.withOpacity(0.1),
                 ),
               ),
             ),
@@ -473,7 +473,7 @@ class _LoginPageState extends State<LoginScreen> with TickerProviderStateMixin {
                 height: 200,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: Colors.yellow.shade800.withOpacity(0.1),
+                  color: Colors.purpleAccent.withOpacity(0.1),
                 ),
               ),
             ),
