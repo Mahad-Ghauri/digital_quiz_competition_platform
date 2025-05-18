@@ -1,22 +1,22 @@
 // ignore_for_file: unused_local_variable
 
 import 'dart:developer';
-import 'package:digital_quiz_competition_platform/Controllers/search_controller.dart';
-import 'package:digital_quiz_competition_platform/Providers/quiz_provider.dart';
-import 'package:digital_quiz_competition_platform/Providers/theme_provider.dart';
-import 'package:digital_quiz_competition_platform/Providers/user_profile_provider.dart';
-import 'package:digital_quiz_competition_platform/Providers/language_provider.dart';
-import 'package:digital_quiz_competition_platform/Providers/notification_provider.dart';
-import 'package:digital_quiz_competition_platform/Providers/sound_provider.dart';
-import 'package:digital_quiz_competition_platform/Providers/leaderboard_provider.dart';
-import 'package:digital_quiz_competition_platform/Services/supabase_service.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:digital_quiz_competition_platform/Utils/consts.dart';
 import 'package:digital_quiz_competition_platform/Views/dashboard.dart';
 import 'package:digital_quiz_competition_platform/firebase_options.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:digital_quiz_competition_platform/Providers/quiz_provider.dart';
+import 'package:digital_quiz_competition_platform/Providers/theme_provider.dart';
+import 'package:digital_quiz_competition_platform/Providers/sound_provider.dart';
+import 'package:digital_quiz_competition_platform/Services/supabase_service.dart';
+import 'package:digital_quiz_competition_platform/Providers/language_provider.dart';
+import 'package:digital_quiz_competition_platform/Controllers/search_controller.dart';
+import 'package:digital_quiz_competition_platform/Providers/user_profile_provider.dart';
+import 'package:digital_quiz_competition_platform/Providers/notification_provider.dart';
+import 'package:digital_quiz_competition_platform/Providers/leaderboard_provider.dart';
 
 Future<void> main() async {
   //  Initialize the Widget Binding
