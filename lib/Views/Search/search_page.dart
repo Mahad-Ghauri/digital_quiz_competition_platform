@@ -105,13 +105,6 @@ class _SearchPageState extends State<SearchPage> with SingleTickerProviderStateM
             fontFamily: GoogleFonts.outfit().fontFamily,
           ),
         ),
-        leading: IconButton(
-          onPressed: () => Navigator.pop(context),
-          icon: Icon(
-            Icons.arrow_back_ios_new_rounded,
-            color: Colors.purpleAccent.withOpacity(0.8),
-          ),
-        ),
       ),
       body: SafeArea(
         child: Column(
