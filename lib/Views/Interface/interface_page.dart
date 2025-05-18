@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -78,141 +80,139 @@ class _InterfacePageState extends State<InterfacePage> {
   Widget _buildHomePage() {
     return Consumer<QuizProvider>(
       builder: (context, quizProvider, child) {
-        return Container(
-          child: Stack(
-            children: [
-              // Background image
-              SizedBox(
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
-                child: Image.asset(
-                  'assets/images/background.jpg',
-                  fit: BoxFit.cover,
-                ),
+        return Stack(
+          children: [
+            // Background image
+            SizedBox(
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              child: Image.asset(
+                'assets/images/background.jpg',
+                fit: BoxFit.cover,
               ),
+            ),
 
-              // App title and header
-              Positioned(
-                top: 50,
-                left: 20,
-                right: 20,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Quiz Master",
-                      style: GoogleFonts.poppins(
-                        fontSize: 28,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
+            // App title and header
+            Positioned(
+              top: 50,
+              left: 20,
+              right: 20,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Quiz Master",
+                    style: GoogleFonts.poppins(
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
                     ),
-                    CircleAvatar(
-                      radius: 25,
-                      backgroundColor: Colors.white.withOpacity(0.3),
-                      child: const Icon(
-                        Icons.person,
-                        color: Colors.white,
-                        size: 30,
-                      ),
+                  ),
+                  CircleAvatar(
+                    radius: 25,
+                    backgroundColor: Colors.white.withOpacity(0.3),
+                    child: const Icon(
+                      Icons.person,
+                      color: Colors.white,
+                      size: 30,
                     ),
-                  ],
-                ),
-              ),
-
-              // Category title
-              Positioned(
-                top: 120,
-                left: 20,
-                child: Text(
-                  "Select Category",
-                  style: GoogleFonts.poppins(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white,
                   ),
-                ),
+                ],
               ),
+            ),
 
-              // Categories horizontal scroll
-              Positioned(
-                top: 160,
-                left: 0,
-                right: 0,
-                height: 70,
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: quizProvider.categories.length,
-                    itemBuilder: (context, index) {
-                      final category = quizProvider.categories[index];
-                      return CategoryCard(
-                        categoryName: category.displayName,
-                        icon: _getCategoryIcon(category.name),
-                        color: cardColors[index % cardColors.length],
-                        onTap: () {
-                          quizProvider.fetchQuestions(category.id);
-                          _navigateToQuestionPage(category.id);
-                        },
-                      );
-                    },
-                  ),
+            // Category title
+            Positioned(
+              top: 120,
+              left: 20,
+              child: Text(
+                "Select Category",
+                style: GoogleFonts.poppins(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white,
                 ),
               ),
+            ),
 
-              // Featured quizzes
-              Positioned(
-                top: 250,
-                left: 20,
-                child: Text(
-                  "Featured Quizzes",
-                  style: GoogleFonts.poppins(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white,
-                  ),
+            // Categories horizontal scroll
+            Positioned(
+              top: 160,
+              left: 0,
+              right: 0,
+              height: 70,
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: quizProvider.categories.length,
+                  itemBuilder: (context, index) {
+                    final category = quizProvider.categories[index];
+                    return CategoryCard(
+                      categoryName: category.displayName,
+                      icon: _getCategoryIcon(category.name),
+                      color: cardColors[index % cardColors.length],
+                      onTap: () {
+                        quizProvider.fetchQuestions(category.id);
+                        _navigateToQuestionPage(category.id);
+                      },
+                    );
+                  },
                 ),
               ),
+            ),
 
-              // Featured quiz cards
-              Positioned(
-                top: 290,
-                bottom: 20,
-                left: 0,
-                right: 0,
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: GridView.builder(
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 15,
-                      mainAxisSpacing: 15,
-                      childAspectRatio: 0.9,
-                    ),
-                    itemCount: quizProvider.categories.length > 6
-                        ? 6
-                        : quizProvider.categories.length,
-                    itemBuilder: (context, index) {
-                      final category = quizProvider.categories[index];
-                      return FeaturedQuizCard(
-                        categoryName: category.displayName,
-                        icon: _getCategoryIcon(category.name),
-                        color: cardColors[index % cardColors.length],
-                        questionCount: "10 Questions",
-                        rating: "4.${index + 5}",
-                        onPlay: () {
-                          quizProvider.fetchQuestions(category.id);
-                          _navigateToQuestionPage(category.id);
-                        },
-                      );
-                    },
-                  ),
+            // Featured quizzes
+            Positioned(
+              top: 250,
+              left: 20,
+              child: Text(
+                "Featured Quizzes",
+                style: GoogleFonts.poppins(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white,
                 ),
               ),
-            ],
-          ),
+            ),
+
+            // Featured quiz cards
+            Positioned(
+              top: 290,
+              bottom: 20,
+              left: 0,
+              right: 0,
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 15,
+                    mainAxisSpacing: 15,
+                    childAspectRatio: 0.9,
+                  ),
+                  itemCount: quizProvider.categories.length > 6
+                      ? 6
+                      : quizProvider.categories.length,
+                  itemBuilder: (context, index) {
+                    final category = quizProvider.categories[index];
+                    return FeaturedQuizCard(
+                      categoryName: category.displayName,
+                      icon: _getCategoryIcon(category.name),
+                      color: cardColors[index % cardColors.length],
+                      questionCount: "10 Questions",
+                      rating: "4.${index + 5}",
+                      imagePath: _getCategoryImagePath(category.name),
+                      onPlay: () {
+                        quizProvider.fetchQuestions(category.id);
+                        _navigateToQuestionPage(category.id);
+                      },
+                    );
+                  },
+                ),
+              ),
+            ),
+          ],
         );
       },
     );
@@ -250,6 +250,25 @@ class _InterfacePageState extends State<InterfacePage> {
         return Icons.rocket;
       default:
         return Icons.category;
+    }
+  }
+
+  String? _getCategoryImagePath(String categoryName) {
+    switch (categoryName.toLowerCase()) {
+      case 'mathematics':
+        return 'assets/math.jpg';
+      case 'music':
+        return 'assets/music.jpg';
+      case 'peopleplaces':
+        return 'assets/place.jpg';
+      case 'toysgames':
+        return 'assets/toys.jpg';
+      case 'language':
+        return 'assets/language.jpg';
+      case 'sciencenature':
+        return 'assets/science.jpg';
+      default:
+        return null;
     }
   }
 }
