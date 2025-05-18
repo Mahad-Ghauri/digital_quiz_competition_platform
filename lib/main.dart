@@ -7,6 +7,7 @@ import 'package:digital_quiz_competition_platform/Providers/user_profile_provide
 import 'package:digital_quiz_competition_platform/Providers/language_provider.dart';
 import 'package:digital_quiz_competition_platform/Providers/notification_provider.dart';
 import 'package:digital_quiz_competition_platform/Providers/sound_provider.dart';
+import 'package:digital_quiz_competition_platform/Providers/leaderboard_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:digital_quiz_competition_platform/Utils/consts.dart';
 import 'package:digital_quiz_competition_platform/Views/Interface/onBoarding.dart';
@@ -38,6 +39,7 @@ Future<void> main() async {
                     ChangeNotifierProvider(create: (context) => LanguageProvider()),
                     ChangeNotifierProvider(create: (context) => NotificationProvider()),
                     ChangeNotifierProvider(create: (context) => SoundProvider()),
+                    ChangeNotifierProvider(create: (context) => LeaderboardProvider()),
                   ],
                   child: const MyApp(),
                 ),

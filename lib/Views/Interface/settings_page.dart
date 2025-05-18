@@ -1,4 +1,4 @@
-// ignore_for_file: deprecated_member_use
+// ignore_for_file: deprecated_member_use, use_build_context_synchronously
 
 import 'package:digital_quiz_competition_platform/Controllers/Authentication/authentication_controller.dart';
 import 'package:digital_quiz_competition_platform/Providers/language_provider.dart';
@@ -976,10 +976,10 @@ class _SettingsPageState extends State<SettingsPage> {
       }
 
       await AuthenticationController().signOutAndEndSession(context);
-    } catch (e) {
+    } catch (error) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Error logging out: $e'),
+          content: Text('Error logging out: $error '),
           backgroundColor: Colors.red,
         ),
       );
