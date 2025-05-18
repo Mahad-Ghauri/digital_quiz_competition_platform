@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously, deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -8,7 +10,6 @@ import '../../Components/leaderboard_filter.dart';
 import '../../Components/leaderboard_item.dart';
 import '../../Components/loading_indicator.dart';
 import '../../Components/top_performers.dart';
-import '../../Models/leaderboard_model.dart';
 import '../../Providers/leaderboard_provider.dart';
 import '../../Utils/auth_validator.dart';
 import '../../Utils/connectivity_validator.dart';

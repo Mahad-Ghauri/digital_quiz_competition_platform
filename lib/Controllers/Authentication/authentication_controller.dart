@@ -153,7 +153,7 @@ class AuthenticationController {
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
-                        child: Text(
+                        child: const Text(
                           "Dismiss",
                           style: TextStyle(
                             color: Colors.white,

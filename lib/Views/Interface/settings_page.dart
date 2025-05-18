@@ -1,15 +1,13 @@
-// ignore_for_file: deprecated_member_use, use_build_context_synchronously
+// ignore_for_file: deprecated_member_use, use_build_context_synchronously, unused_local_variable
 
 import 'package:digital_quiz_competition_platform/Controllers/Authentication/authentication_controller.dart';
 import 'package:digital_quiz_competition_platform/Providers/language_provider.dart';
 import 'package:digital_quiz_competition_platform/Providers/notification_provider.dart';
 import 'package:digital_quiz_competition_platform/Providers/sound_provider.dart';
 import 'package:digital_quiz_competition_platform/Providers/user_profile_provider.dart';
-import 'package:digital_quiz_competition_platform/Views/Authentication/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:provider/provider.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
@@ -70,7 +68,7 @@ class _SettingsPageState extends State<SettingsPage> {
   Future<void> _saveSettings() async {
     // The providers will handle saving the settings
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
+      const SnackBar(
         content: Text('Settings saved successfully'),
         backgroundColor: Colors.green,
         behavior: SnackBarBehavior.floating,

@@ -346,7 +346,7 @@ class _LoginPageState extends State<LoginScreen> with TickerProviderStateMixin {
                                     onPressed: () {
                                       Navigator.of(
                                         context,
-                                      ).push(_elegantRoute(ForgotPassword()));
+                                      ).push(_elegantRoute(const ForgotPassword()));
                                     },
                                     style: TextButton.styleFrom(
                                       foregroundColor: Colors.yellow.shade800,

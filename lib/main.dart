@@ -1,6 +1,7 @@
+// ignore_for_file: unused_local_variable
+
 import 'dart:developer';
 
-import 'package:digital_quiz_competition_platform/Views/Auth%20Gate/auth_gate.dart';
 import 'package:digital_quiz_competition_platform/Providers/quiz_provider.dart';
 import 'package:digital_quiz_competition_platform/Providers/theme_provider.dart';
 import 'package:digital_quiz_competition_platform/Providers/user_profile_provider.dart';
@@ -10,7 +11,7 @@ import 'package:digital_quiz_competition_platform/Providers/sound_provider.dart'
 import 'package:digital_quiz_competition_platform/Providers/leaderboard_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:digital_quiz_competition_platform/Utils/consts.dart';
-import 'package:digital_quiz_competition_platform/Views/Interface/onBoarding.dart';
+import 'package:digital_quiz_competition_platform/Views/Interface/onboarding.dart';
 import 'package:digital_quiz_competition_platform/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';

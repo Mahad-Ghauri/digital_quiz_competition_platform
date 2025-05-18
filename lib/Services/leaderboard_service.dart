@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:flutter/material.dart';
 import '../Models/leaderboard_model.dart';
 
 class LeaderboardService {
@@ -14,7 +13,7 @@ class LeaderboardService {
     }
     
     // Return mock data based on filter
-    final int entryCount = 20;
+    const int entryCount = 20;
     List<LeaderboardEntry> entries = [];
     
     for (int i = 0; i < entryCount; i++) {

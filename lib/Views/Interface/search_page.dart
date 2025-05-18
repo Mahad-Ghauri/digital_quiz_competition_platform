@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -34,12 +36,12 @@ class SearchPage extends StatelessWidget {
                     color: Colors.white.withOpacity(0.9),
                     borderRadius: BorderRadius.circular(15),
                   ),
-                  child: TextField(
+                  child: const TextField(
                     decoration: InputDecoration(
                       hintText: "Search by category or quiz name...",
-                      prefixIcon: const Icon(Icons.search),
+                      prefixIcon: Icon(Icons.search),
                       border: InputBorder.none,
-                      contentPadding: const EdgeInsets.symmetric(
+                      contentPadding: EdgeInsets.symmetric(
                         horizontal: 20,
                         vertical: 15,
                       ),

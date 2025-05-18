@@ -1,4 +1,4 @@
-// ignore_for_file: deprecated_member_use
+// ignore_for_file: deprecated_member_use, use_build_context_synchronously
 
 import 'package:digital_quiz_competition_platform/Controllers/Authentication/authentication_controller.dart';
 import 'package:digital_quiz_competition_platform/Controllers/input_controllers.dart';
@@ -86,7 +86,7 @@ class _ForgotPasswordState extends State<ForgotPassword>
 
       // Show error message
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+        const SnackBar(
           content: Text("Failed to send reset link. Please try again."),
           backgroundColor: Colors.red,
         ),
@@ -271,7 +271,7 @@ class _ForgotPasswordState extends State<ForgotPassword>
                                         ),
                                         child:
                                             _isLoading
-                                                ? SizedBox(
+                                                ? const SizedBox(
                                                   width: 24,
                                                   height: 24,
                                                   child:
