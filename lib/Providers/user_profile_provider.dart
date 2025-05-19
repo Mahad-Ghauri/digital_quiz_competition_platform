@@ -6,11 +6,17 @@ class UserProfile {
   String name;
   String username;
   String? profileImagePath;
+  int quizzesTaken;
+  int totalScore;
+  List<String> achievements;
   
   UserProfile({
     required this.name,
     required this.username,
     this.profileImagePath,
+    this.quizzesTaken = 0,
+    this.totalScore = 0,
+    this.achievements = const [],
   });
   
   Map<String, dynamic> toJson() {
@@ -18,6 +24,9 @@ class UserProfile {
       'name': name,
       'username': username,
       'profileImagePath': profileImagePath,
+      'quizzesTaken': quizzesTaken,
+      'totalScore': totalScore,
+      'achievements': achievements,
     };
   }
   
@@ -26,6 +35,11 @@ class UserProfile {
       name: json['name'] ?? 'User',
       username: json['username'] ?? 'username',
       profileImagePath: json['profileImagePath'],
+      quizzesTaken: json['quizzesTaken'] ?? 0,
+      totalScore: json['totalScore'] ?? 0,
+      achievements: json['achievements'] != null 
+          ? List<String>.from(json['achievements']) 
+          : [],
     );
   }
 }
@@ -61,10 +75,16 @@ class UserProfileProvider with ChangeNotifier {
     String? name,
     String? username,
     String? profileImagePath,
+    int? quizzesTaken,
+    int? totalScore,
+    List<String>? achievements,
   }) async {
     if (name != null) _userProfile.name = name;
     if (username != null) _userProfile.username = username;
     if (profileImagePath != null) _userProfile.profileImagePath = profileImagePath;
+    if (quizzesTaken != null) _userProfile.quizzesTaken = quizzesTaken;
+    if (totalScore != null) _userProfile.totalScore = totalScore;
+    if (achievements != null) _userProfile.achievements = achievements;
     
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString('user_profile', json.encode(_userProfile.toJson()));

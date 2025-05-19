@@ -117,12 +117,12 @@ class _LeaderboardPageState extends State<LeaderboardPage>
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.purpleAccent,
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back, color: Colors.white),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
+          // leading: IconButton(
+          //   icon: const Icon(Icons.arrow_back, color: Colors.white),
+          //   onPressed: () {
+          //     Navigator.of(context).pop();
+          //   },
+          // ),
           title: Text(
             "Leaderboard",
             style: GoogleFonts.poppins(
@@ -152,10 +152,11 @@ class _LeaderboardPageState extends State<LeaderboardPage>
         ),
         body: Container(
           decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/images/background.jpg'),
-              fit: BoxFit.cover,
-            ),
+            color: Colors.white70,
+            // image: DecorationImage(
+            //   image: AssetImage('assets/images/background.jpg'),
+            //   fit: BoxFit.cover,
+            // ),
           ),
           child: SafeArea(
             child: Padding(

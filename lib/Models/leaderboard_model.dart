@@ -5,6 +5,8 @@ class LeaderboardEntry {
   final int wins;
   final String? photoUrl;
   final int rank;
+  final int quizzesTaken;
+  final int score;
 
   LeaderboardEntry({
     required this.userId,
@@ -13,6 +15,8 @@ class LeaderboardEntry {
     required this.wins,
     this.photoUrl,
     required this.rank,
+    this.quizzesTaken = 0,
+    this.score = 0,
   });
 
   factory LeaderboardEntry.fromJson(Map<String, dynamic> json, int rank) {
@@ -23,6 +27,8 @@ class LeaderboardEntry {
       wins: json['wins'] ?? 0,
       photoUrl: json['photoUrl'],
       rank: rank,
+      quizzesTaken: json['quizzesTaken'] ?? 0,
+      score: json['score'] ?? json['points'] ?? 0,
     );
   }
 }

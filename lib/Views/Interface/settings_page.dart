@@ -104,10 +104,11 @@ class _SettingsPageState extends State<SettingsPage> {
       ),
       body: Container(
         decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/images/background.jpg'),
-            fit: BoxFit.cover,
-          ),
+          color: Colors.white70,
+          // image: DecorationImage(
+          //   image: AssetImage('assets/images/background.jpg'),
+          //   fit: BoxFit.cover,
+          // ),
         ),
         child: SafeArea(
           child: Padding(
@@ -115,7 +116,8 @@ class _SettingsPageState extends State<SettingsPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 10),
+                _buildDashboardSummary(userProfileProvider),
+                const SizedBox(height: 20),
                 Expanded(
                   child: Container(
                     decoration: BoxDecoration(
@@ -244,6 +246,120 @@ class _SettingsPageState extends State<SettingsPage> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildDashboardSummary(UserProfileProvider userProfileProvider) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(15),
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          colors: [Colors.purpleAccent, Colors.deepPurpleAccent],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(15),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.purple.withOpacity(0.3),
+            blurRadius: 10,
+            offset: const Offset(0, 5),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Profile Summary",
+                style: GoogleFonts.poppins(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+              CircleAvatar(
+                radius: 20,
+                backgroundColor: Colors.white.withOpacity(0.2),
+                child: _profileImage != null
+                    ? ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: Image.file(
+                          _profileImage!,
+                          width: 40,
+                          height: 40,
+                          fit: BoxFit.cover,
+                        ),
+                      )
+                    : const Icon(
+                        Icons.person,
+                        color: Colors.white,
+                      ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 15),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              _buildStatItem(
+                title: userProfileProvider.userProfile.quizzesTaken.toString(),
+                subtitle: "Quizzes Taken",
+                icon: Icons.quiz,
+              ),
+              _buildStatItem(
+                title: userProfileProvider.userProfile.totalScore.toString(),
+                subtitle: "Total Score",
+                icon: Icons.star,
+              ),
+              _buildStatItem(
+                title: "${userProfileProvider.userProfile.achievements.length}",
+                subtitle: "Achievements",
+                icon: Icons.emoji_events,
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+  
+  Widget _buildStatItem({required String title, required String subtitle, required IconData icon}) {
+    return Column(
+      children: [
+        Container(
+          padding: const EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0.2),
+            shape: BoxShape.circle,
+          ),
+          child: Icon(
+            icon,
+            color: Colors.white,
+            size: 24,
+          ),
+        ),
+        const SizedBox(height: 8),
+        Text(
+          title,
+          style: GoogleFonts.poppins(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+        Text(
+          subtitle,
+          style: GoogleFonts.poppins(
+            fontSize: 12,
+            color: Colors.white.withOpacity(0.8),
+          ),
+        ),
+      ],
     );
   }
 
