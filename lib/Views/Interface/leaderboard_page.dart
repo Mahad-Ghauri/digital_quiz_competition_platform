@@ -21,10 +21,12 @@ class LeaderboardPage extends StatefulWidget {
   State<LeaderboardPage> createState() => _LeaderboardPageState();
 }
 
-class _LeaderboardPageState extends State<LeaderboardPage> with AutomaticKeepAliveClientMixin {
+class _LeaderboardPageState extends State<LeaderboardPage>
+    with AutomaticKeepAliveClientMixin {
   bool _isInitialized = false;
   bool _isConnected = true;
-  final String _currentUserId = 'user_3'; // Mock current user ID for highlighting
+  final String _currentUserId =
+      'user_3'; // Mock current user ID for highlighting
 
   @override
   bool get wantKeepAlive => true;
@@ -35,7 +37,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> with AutomaticKeepAli
     // Start listening for connectivity changes
     ConnectivityValidator.startListening(_handleConnectivityChange);
   }
-  
+
   @override
   void dispose() {
     // Stop listening for connectivity changes
@@ -59,10 +61,11 @@ class _LeaderboardPageState extends State<LeaderboardPage> with AutomaticKeepAli
       setState(() {
         _isConnected = isConnected;
       });
-      
+
       if (isConnected && _isInitialized) {
         // Refresh data when connection is restored
-        final provider = Provider.of<LeaderboardProvider>(context, listen: false);
+        final provider =
+            Provider.of<LeaderboardProvider>(context, listen: false);
         provider.refreshLeaderboard();
       }
     }
@@ -71,12 +74,12 @@ class _LeaderboardPageState extends State<LeaderboardPage> with AutomaticKeepAli
   Future<void> _initializeProvider() async {
     // Check connectivity first
     final isConnected = await ConnectivityValidator.isConnected();
-    
+
     if (!isConnected && mounted) {
       setState(() {
         _isConnected = false;
       });
-      
+
       // Show no connection dialog
       await ConnectivityValidator.showNoConnectionDialog(
         context,
@@ -84,7 +87,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> with AutomaticKeepAli
       );
       return;
     }
-    
+
     // Validate if user is authenticated before loading data
     if (await _validateAuthentication()) {
       final provider = Provider.of<LeaderboardProvider>(context, listen: false);
@@ -95,23 +98,58 @@ class _LeaderboardPageState extends State<LeaderboardPage> with AutomaticKeepAli
   // Authentication validation
   Future<bool> _validateAuthentication() async {
     final isAuth = await AuthValidator.isAuthenticated();
-    
+
     if (!isAuth && mounted) {
       // Show authentication required dialog
       await AuthValidator.showAuthRequiredDialog(context);
       return false;
     }
-    
+
     return isAuth;
   }
 
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    
+
     return ChangeNotifierProvider(
       create: (_) => LeaderboardProvider(),
       child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.purpleAccent,
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back, color: Colors.white),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+          title: Text(
+            "Leaderboard",
+            style: GoogleFonts.poppins(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          ),
+          actions: [
+            Consumer<LeaderboardProvider>(
+              builder: (context, provider, _) {
+                return IconButton(
+                  onPressed: provider.isLoading
+                      ? null
+                      : () => provider.refreshLeaderboard(),
+                  icon: Icon(
+                    Icons.refresh,
+                    color: Colors.white.withOpacity(
+                      provider.isLoading ? 0.5 : 1.0,
+                    ),
+                  ),
+                  tooltip: 'Refresh leaderboard',
+                );
+              },
+            ),
+          ],
+        ),
         body: Container(
           decoration: const BoxDecoration(
             image: DecorationImage(
@@ -125,8 +163,6 @@ class _LeaderboardPageState extends State<LeaderboardPage> with AutomaticKeepAli
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _buildHeader(),
-                  const SizedBox(height: 20),
                   _buildFilterSection(),
                   const SizedBox(height: 30),
                   _buildLeaderboardContent(),
@@ -139,37 +175,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> with AutomaticKeepAli
     );
   }
 
-  Widget _buildHeader() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          "Leaderboard",
-          style: GoogleFonts.poppins(
-            fontSize: 28,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
-        Consumer<LeaderboardProvider>(
-          builder: (context, provider, _) {
-            return IconButton(
-              onPressed: provider.isLoading 
-                  ? null 
-                  : () => provider.refreshLeaderboard(),
-              icon: Icon(
-                Icons.refresh,
-                color: Colors.white.withOpacity(
-                  provider.isLoading ? 0.5 : 1.0,
-                ),
-              ),
-              tooltip: 'Refresh leaderboard',
-            );
-          },
-        ),
-      ],
-    );
-  }
+  // Header moved to AppBar
 
   Widget _buildFilterSection() {
     return Consumer<LeaderboardProvider>(
@@ -189,16 +195,18 @@ class _LeaderboardPageState extends State<LeaderboardPage> with AutomaticKeepAli
     if (!_isConnected) {
       return Expanded(
         child: ErrorMessage(
-          message: 'No internet connection. Please check your connection and try again.',
+          message:
+              'No internet connection. Please check your connection and try again.',
           onRetry: () async {
             final isConnected = await ConnectivityValidator.isConnected();
             if (mounted) {
               setState(() {
                 _isConnected = isConnected;
               });
-              
+
               if (isConnected) {
-                final provider = Provider.of<LeaderboardProvider>(context, listen: false);
+                final provider =
+                    Provider.of<LeaderboardProvider>(context, listen: false);
                 provider.refreshLeaderboard();
               }
             }
@@ -206,7 +214,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> with AutomaticKeepAli
         ),
       );
     }
-    
+
     return Expanded(
       child: Consumer<LeaderboardProvider>(
         builder: (context, provider, _) {
@@ -216,7 +224,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> with AutomaticKeepAli
               message: 'Loading leaderboard data...',
             );
           }
-          
+
           // Error state validation
           if (provider.error != null) {
             return ErrorMessage(
@@ -224,7 +232,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> with AutomaticKeepAli
               onRetry: () => provider.refreshLeaderboard(),
             );
           }
-          
+
           // Empty state validation
           if (!provider.hasData) {
             return const EmptyState(
@@ -232,7 +240,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> with AutomaticKeepAli
               icon: Icons.emoji_events_outlined,
             );
           }
-          
+
           // Data loaded successfully
           return RefreshIndicator(
             onRefresh: () => provider.refreshLeaderboard(),
@@ -245,7 +253,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> with AutomaticKeepAli
                     topEntries: provider.topPerformers,
                     currentUserId: _currentUserId,
                   ),
-                
+
                 // Show all entries
                 ...provider.entries.map((entry) {
                   final isCurrentUser = entry.userId == _currentUserId;
@@ -254,7 +262,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> with AutomaticKeepAli
                     isCurrentUser: isCurrentUser,
                   );
                 }).toList(),
-                
+
                 // Add some padding at the bottom
                 const SizedBox(height: 20),
               ],

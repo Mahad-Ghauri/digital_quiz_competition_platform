@@ -85,6 +85,23 @@ class _SettingsPageState extends State<SettingsPage> {
     final userProfileProvider = Provider.of<UserProfileProvider>(context);
 
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.purpleAccent,
+        // leading: IconButton(
+        //   icon: const Icon(Icons.arrow_back, color: Colors.white),
+        //   onPressed: () {
+        //     Navigator.of(context).pop();
+        //   },
+        // ),
+        title: Text(
+          languageProvider.translate('settings'),
+          style: GoogleFonts.poppins(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+      ),
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
@@ -98,15 +115,7 @@ class _SettingsPageState extends State<SettingsPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  languageProvider.translate('settings'),
-                  style: GoogleFonts.poppins(
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ).animate().fadeIn(duration: 500.ms),
-                const SizedBox(height: 30),
+                const SizedBox(height: 10),
                 Expanded(
                   child: Container(
                     decoration: BoxDecoration(

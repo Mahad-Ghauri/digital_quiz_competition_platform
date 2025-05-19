@@ -60,7 +60,7 @@ Future<void> main() async {
           child: const MyApp(),
         ),
       );
-      // runApp(const MyApp());
+
     }).onError((error, stackTrace) {
       log("Supabase initialization failed; $error");
     });

@@ -1,17 +1,11 @@
 // ignore_for_file: deprecated_member_use, use_build_context_synchronously
 
-import 'package:digital_quiz_competition_platform/Views/Blog/blog_page.dart';
-import 'package:digital_quiz_competition_platform/Views/Search/search_page.dart'
-    show SearchPage;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import '../../Components/category_card.dart';
 import '../../Components/featured_quiz_card.dart';
-import '../../Components/bottom_nav_bar.dart';
 import '../../Providers/quiz_provider.dart';
-import 'leaderboard_page.dart';
-import 'settings_page.dart';
 import 'question_page.dart';
 
 class InterfacePage extends StatefulWidget {
@@ -22,8 +16,6 @@ class InterfacePage extends StatefulWidget {
 }
 
 class _InterfacePageState extends State<InterfacePage> {
-  int _currentIndex = 0;
-
   // Colors for the category cards
   final List<Color> cardColors = [
     Colors.red.shade300,
@@ -47,12 +39,6 @@ class _InterfacePageState extends State<InterfacePage> {
     Future.microtask(() => context.read<QuizProvider>().fetchCategories());
   }
 
-  void _onNavItemTapped(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
-  }
-
   void _navigateToQuestionPage(String categoryId) {
     Navigator.push(
       context,
@@ -63,20 +49,24 @@ class _InterfacePageState extends State<InterfacePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: IndexedStack(
-        index: _currentIndex,
-        children: [
-          _buildHomePage(),
-          const SearchPage(),
-          const BlogPage(), // Replace with your actual blog page
-          const LeaderboardPage(),
-          const SettingsPage(),
-        ],
+      appBar: AppBar(
+        backgroundColor: Colors.purpleAccent,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+        title: Text(
+          'Quiz Master',
+          style: GoogleFonts.poppins(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
       ),
-      bottomNavigationBar: BottomNavBar(
-        currentIndex: _currentIndex,
-        onTap: _onNavItemTapped,
-      ),
+      body: _buildHomePage(),
     );
   }
 
@@ -95,38 +85,9 @@ class _InterfacePageState extends State<InterfacePage> {
               ),
             ),
 
-            // App title and header
-            Positioned(
-              top: 50,
-              left: 20,
-              right: 20,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Quiz Master",
-                    style: GoogleFonts.poppins(
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                  CircleAvatar(
-                    radius: 25,
-                    backgroundColor: Colors.white.withOpacity(0.3),
-                    child: const Icon(
-                      Icons.person,
-                      color: Colors.white,
-                      size: 30,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-
             // Category title
             Positioned(
-              top: 120,
+              top: 20,
               left: 20,
               child: Text(
                 "Select Category",
@@ -140,7 +101,7 @@ class _InterfacePageState extends State<InterfacePage> {
 
             // Categories horizontal scroll
             Positioned(
-              top: 160,
+              top: 60,
               left: 0,
               right: 0,
               height: 70,
@@ -167,7 +128,7 @@ class _InterfacePageState extends State<InterfacePage> {
 
             // Featured quizzes
             Positioned(
-              top: 250,
+              top: 150,
               left: 20,
               child: Text(
                 "Featured Quizzes",
@@ -181,7 +142,7 @@ class _InterfacePageState extends State<InterfacePage> {
 
             // Featured quiz cards
             Positioned(
-              top: 290,
+              top: 190,
               bottom: 20,
               left: 0,
               right: 0,

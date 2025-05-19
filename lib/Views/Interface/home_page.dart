@@ -1,3 +1,8 @@
+// ignore_for_file: deprecated_member_use
+
+import 'package:digital_quiz_competition_platform/Views/Interface/interface_page.dart';
+import 'package:digital_quiz_competition_platform/Views/Interface/leaderboard_page.dart';
+import 'package:digital_quiz_competition_platform/Views/Interface/settings_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -25,7 +30,7 @@ class HomePage extends StatelessWidget {
             Container(
               height: 200,
               width: double.infinity,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   colors: [Colors.purpleAccent, Colors.blueAccent],
                   begin: Alignment.topLeft,
@@ -88,7 +93,8 @@ class HomePage extends StatelessWidget {
                         Icons.play_arrow_rounded,
                         Colors.green,
                         () {
-                          // Navigate to quiz page
+                          Navigator.of(context)
+                              .push(_elegantRoute(const InterfacePage()));
                         },
                       ),
                       _buildQuickActionCard(
@@ -97,6 +103,8 @@ class HomePage extends StatelessWidget {
                         Icons.leaderboard_rounded,
                         Colors.orange,
                         () {
+                          Navigator.of(context)
+                              .push(_elegantRoute(const LeaderboardPage()));
                           // Navigate to leaderboard
                         },
                       ),
@@ -106,7 +114,8 @@ class HomePage extends StatelessWidget {
                         Icons.person_rounded,
                         Colors.blue,
                         () {
-                          // Navigate to profile
+                          Navigator.of(context)
+                              .push(_elegantRoute(const SettingsPage()));
                         },
                       ),
                     ],
@@ -388,6 +397,23 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  PageRouteBuilder _elegantRoute(Widget page) {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => page,
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        var fadeAnimation = Tween<double>(begin: 0, end: 1).animate(animation);
+        var scaleAnimation = Tween<double>(begin: 0.95, end: 1).animate(
+          CurvedAnimation(parent: animation, curve: Curves.easeOutExpo),
+        );
+        return FadeTransition(
+          opacity: fadeAnimation,
+          child: ScaleTransition(scale: scaleAnimation, child: child),
+        );
+      },
+      transitionDuration: const Duration(milliseconds: 500),
     );
   }
 }
