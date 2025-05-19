@@ -6,7 +6,8 @@ import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:digital_quiz_competition_platform/Utils/consts.dart';
-import 'package:digital_quiz_competition_platform/Views/dashboard.dart';
+// import 'package:digital_quiz_competition_platform/Views/dashboard.dart';
+import 'package:digital_quiz_competition_platform/Views/Interface/onboarding.dart';
 import 'package:digital_quiz_competition_platform/firebase_options.dart';
 import 'package:digital_quiz_competition_platform/Providers/quiz_provider.dart';
 import 'package:digital_quiz_competition_platform/Providers/theme_provider.dart';
@@ -80,7 +81,7 @@ class MyApp extends StatelessWidget {
       title: 'Quizizen',
       debugShowCheckedModeBanner: false,
       theme: themeProvider.getTheme(),
-      home: const Dashboard(),
+      home: const Onboarding(),
     );
   }
 }

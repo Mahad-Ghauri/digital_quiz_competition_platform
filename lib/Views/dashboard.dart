@@ -1,5 +1,8 @@
-import 'package:digital_quiz_competition_platform/Views/Interface/onboarding.dart';
+import 'package:digital_quiz_competition_platform/Views/Interface/leaderboard_page.dart';
+import 'package:digital_quiz_competition_platform/Views/Interface/home_page.dart';
+import 'package:digital_quiz_competition_platform/Views/Interface/settings_page.dart';
 import 'package:digital_quiz_competition_platform/Views/Search/search_page.dart';
+import 'package:digital_quiz_competition_platform/Views/Blog/blog_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -15,12 +18,11 @@ class _DashboardState extends State<Dashboard> {
 
   // List of pages to display
   final List<Widget> _pages = [
-    const Onboarding(), // Replace with your actual home page
+    const HomePage(), // Home page
     const SearchPage(),
-    const Center(
-        child: Text('Profile')), // Replace with your actual profile page
-    const Center(
-        child: Text('Settings')), // Replace with your actual settings page
+    const BlogPage(),
+    const LeaderboardPage(),
+    const SettingsPage(),
   ];
 
   @override
@@ -70,10 +72,20 @@ class _DashboardState extends State<Dashboard> {
               label: 'Search',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.person_outline_rounded),
-              activeIcon: Icon(Icons.person_rounded),
-              label: 'Profile',
+              icon: Icon(Icons.article_outlined),
+              activeIcon: Icon(Icons.article_rounded),
+              label: 'Blog',
             ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.leaderboard_outlined),
+              activeIcon: Icon(Icons.leaderboard_rounded),
+              label: 'Leaderboard',
+            ),
+            // BottomNavigationBarItem(
+            //   icon: Icon(Icons.person_outline_rounded),
+            //   activeIcon: Icon(Icons.person_rounded),
+            //   label: 'Profile',
+            // ),
             BottomNavigationBarItem(
               icon: Icon(Icons.settings_outlined),
               activeIcon: Icon(Icons.settings_rounded),

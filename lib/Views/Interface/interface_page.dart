@@ -1,5 +1,6 @@
 // ignore_for_file: deprecated_member_use, use_build_context_synchronously
 
+import 'package:digital_quiz_competition_platform/Views/Blog/blog_page.dart';
 import 'package:digital_quiz_competition_platform/Views/Search/search_page.dart'
     show SearchPage;
 import 'package:flutter/material.dart';
@@ -67,6 +68,7 @@ class _InterfacePageState extends State<InterfacePage> {
         children: [
           _buildHomePage(),
           const SearchPage(),
+          const BlogPage(), // Replace with your actual blog page
           const LeaderboardPage(),
           const SettingsPage(),
         ],

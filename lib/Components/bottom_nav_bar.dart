@@ -36,8 +36,9 @@ class BottomNavBar extends StatelessWidget {
         children: [
           _buildNavItem(Icons.home, "Home", 0),
           _buildNavItem(Icons.search, "Search", 1),
-          _buildNavItem(Icons.leaderboard, "Leaderboard", 2),
-          _buildNavItem(Icons.settings, "Settings", 3),
+          _buildNavItem(Icons.article, "Blog", 2),
+          _buildNavItem(Icons.leaderboard, "Leaderboard", 3),
+          _buildNavItem(Icons.settings, "Settings", 4),
         ],
       ),
     );
