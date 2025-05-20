@@ -131,7 +131,7 @@ class BlogDetailPage extends StatelessWidget {
 
                   const SizedBox(height: 32.0),
 
-                  // Related Articles Section (Placeholder)
+                  // Related Articles Section
                   Text(
                     languageProvider.translate('relatedArticles'),
                     style: TextStyle(

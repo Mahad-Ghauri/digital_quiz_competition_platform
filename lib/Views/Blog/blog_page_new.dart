@@ -10,6 +10,8 @@ class BlogPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final languageProvider = Provider.of<LanguageProvider>(context);
+    
     // Hardcoded blog data
     final List<BlogModel> blogs = [
       BlogModel(
@@ -24,7 +26,11 @@ class BlogPage extends StatelessWidget {
             'Understanding these roles helps you become a more active and responsible citizen.',
         imageUrl:
             'https://plus.unsplash.com/premium_photo-1733342422588-c2fc9e279836?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cmVzcG9uc2liaWxpdHl8ZW58MHx8MHx8fDA%3D',
-        tags: ['Civics', 'Citizenship', 'Responsibility'],
+        tags: [
+          languageProvider.translate('civics'),
+          languageProvider.translate('citizenship'),
+          languageProvider.translate('responsibility')
+        ],
       ),
       BlogModel(
         id: '2',
@@ -40,7 +46,11 @@ class BlogPage extends StatelessWidget {
             'Remember, the key is consistency and curiosity!',
         imageUrl:
             'https://images.unsplash.com/photo-1606326608606-aa0b62935f2b',
-        tags: ['Quiz', 'Learning', 'Competition'],
+        tags: [
+          languageProvider.translate('quiz'),
+          languageProvider.translate('learning'),
+          languageProvider.translate('competition')
+        ],
       ),
       BlogModel(
         id: '3',
@@ -54,7 +64,11 @@ class BlogPage extends StatelessWidget {
             'From volunteering to town hall meetings, every action makes a difference.',
         imageUrl:
             'https://plus.unsplash.com/premium_photo-1708598525588-eae2b2d05a9e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        tags: ['Community', 'Engagement', 'Social Impact'],
+        tags: [
+          languageProvider.translate('community'),
+          languageProvider.translate('engagement'),
+          languageProvider.translate('socialImpact')
+        ],
       ),
       BlogModel(
         id: '4',
@@ -68,7 +82,11 @@ class BlogPage extends StatelessWidget {
             'Empowering the youth is essential for long-term societal growth.',
         imageUrl:
             'https://images.unsplash.com/photo-1593896385987-16bcbf9451e5?q=80&w=1994&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-        tags: ['Youth', 'Civic Action', 'Leadership'],
+        tags: [
+          languageProvider.translate('youth'),
+          languageProvider.translate('civicAction'),
+          languageProvider.translate('leadership')
+        ],
       ),
       BlogModel(
         id: '5',
@@ -82,7 +100,11 @@ class BlogPage extends StatelessWidget {
             'An informed vote is the first step toward meaningful change.',
         imageUrl:
             'https://plus.unsplash.com/premium_photo-1708938893194-eaa4bf9efffd?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHZvdGluZ3xlbnwwfHwwfHx8MA%3D%3Dd920f1fb7238',
-        tags: ['Voting', 'Democracy', 'Rights'],
+        tags: [
+          languageProvider.translate('voting'),
+          languageProvider.translate('democracy'),
+          languageProvider.translate('rights')
+        ],
       ),
       BlogModel(
         id: '6',
@@ -95,21 +117,29 @@ class BlogPage extends StatelessWidget {
             'Civic responsibility includes protecting the environment for future generations.',
         imageUrl:
             'https://images.unsplash.com/photo-1564669733547-c6ca390e11c5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGVudmlyb25tZW50fGVufDB8fDB8fHww',
-        tags: ['Environment', 'Civic Action', 'Sustainability'],
+        tags: [
+          languageProvider.translate('environment'),
+          languageProvider.translate('civicAction'),
+          languageProvider.translate('sustainability')
+        ],
       ),
       BlogModel(
         id: '7',
-        title: 'Know Your Rights: A Citizen’s Guide',
+        title: 'Know Your Rights: A Citizens Guide',
         author: 'Legal Light',
         date: 'November 10, 2023',
         content:
             'Understanding your rights empowers you to stand up for justice and fairness. '
-            'Whether it’s freedom of speech, the right to a fair trial, or the right to protest, '
+            'Whether its freedom of speech, the right to a fair trial, or the right to protest, '
             'being informed helps you protect yourself and others. '
             'Civic education is essential in building a society where rights are respected and upheld.',
         imageUrl:
             'https://plus.unsplash.com/premium_photo-1668058723804-d7dcd1ffa4c9?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8anVzdGljZXxlbnwwfHwwfHx8MA%3D%3D',
-        tags: ['Rights', 'Law', 'Civic Education'],
+        tags: [
+          languageProvider.translate('rights'),
+          languageProvider.translate('law'),
+          languageProvider.translate('civicEducation')
+        ],
       ),
       BlogModel(
         id: '8',
@@ -118,12 +148,16 @@ class BlogPage extends StatelessWidget {
         date: 'December 5, 2023',
         content:
             'Activism helps raise awareness about important issues and pressures leaders to act. '
-            'From peaceful protests to online campaigns, it’s a vital part of democracy. '
+            'From peaceful protests to online campaigns, its a vital part of democracy. '
             'Activists amplify voices that might otherwise go unheard and drive policy change. '
             'Informed and peaceful activism can reshape societies for the better.',
         imageUrl:
             'https://plus.unsplash.com/premium_photo-1679429321023-dff2ea455b0c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGNvbW11bml0eXxlbnwwfHwwfHx8MA%3D%3D',
-        tags: ['Activism', 'Democracy', 'Change'],
+        tags: [
+          languageProvider.translate('activism'),
+          languageProvider.translate('democracy'),
+          languageProvider.translate('change')
+        ],
       ),
       BlogModel(
         id: '9',
@@ -137,11 +171,13 @@ class BlogPage extends StatelessWidget {
             'Inclusion is key to a stronger, more united society.',
         imageUrl:
             'https://images.unsplash.com/photo-1591197172062-c718f82aba20?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y29tbXVuaXR5fGVufDB8fDB8fHww',
-        tags: ['Inclusion', 'Community', 'Equality'],
+        tags: [
+          languageProvider.translate('inclusion'),
+          languageProvider.translate('community'),
+          languageProvider.translate('equality')
+        ],
       ),
     ];
-
-    final languageProvider = Provider.of<LanguageProvider>(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -174,7 +210,7 @@ class BlogCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final languageProvider = Provider.of<LanguageProvider>(context);
-
+    
     return Card(
       margin: const EdgeInsets.only(bottom: 16.0),
       elevation: 4.0,
