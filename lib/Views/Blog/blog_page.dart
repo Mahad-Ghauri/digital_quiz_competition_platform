@@ -94,6 +94,48 @@ class BlogPage extends StatelessWidget {
             'https://images.unsplash.com/photo-1584270354949-1bc6d8e3e1a2',
         tags: ['Environment', 'Civic Action', 'Sustainability'],
       ),
+      BlogModel(
+        id: '7',
+        title: 'Know Your Rights: A Citizen’s Guide',
+        author: 'Legal Light',
+        date: 'November 10, 2023',
+        content:
+            'Understanding your rights empowers you to stand up for justice and fairness. '
+            'Whether it’s freedom of speech, the right to a fair trial, or the right to protest, '
+            'being informed helps you protect yourself and others. '
+            'Civic education is essential in building a society where rights are respected and upheld.',
+        imageUrl:
+            'https://images.unsplash.com/photo-1604589031319-fbaceaf7b63c',
+        tags: ['Rights', 'Law', 'Civic Education'],
+      ),
+      BlogModel(
+        id: '8',
+        title: 'The Role of Activism in a Healthy Democracy',
+        author: 'Change Catalyst',
+        date: 'December 5, 2023',
+        content:
+            'Activism helps raise awareness about important issues and pressures leaders to act. '
+            'From peaceful protests to online campaigns, it’s a vital part of democracy. '
+            'Activists amplify voices that might otherwise go unheard and drive policy change. '
+            'Informed and peaceful activism can reshape societies for the better.',
+        imageUrl:
+            'https://images.unsplash.com/photo-1589927986089-35812388d1ef',
+        tags: ['Activism', 'Democracy', 'Change'],
+      ),
+      BlogModel(
+        id: '9',
+        title: 'Building Inclusive Communities',
+        author: 'Unity Builder',
+        date: 'January 18, 2024',
+        content:
+            'An inclusive community values diversity and ensures that everyone feels welcome. '
+            'It involves recognizing different identities and creating equal opportunities. '
+            'Through civic participation, people can foster mutual respect and social equity. '
+            'Inclusion is key to a stronger, more united society.',
+        imageUrl:
+            'https://images.unsplash.com/photo-1573497019430-2523b0040b4a',
+        tags: ['Inclusion', 'Community', 'Equality'],
+      ),
     ];
 
     return Scaffold(
