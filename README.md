@@ -442,6 +442,3 @@ pie
 <p>Contact: mahadghauri222@gmail.com</p>
   <p>© 2025 Quzizen All rights reserved.</p>
 </div>
-
----
-*Last Updated: [Current Date]*
