@@ -12,6 +12,20 @@ class BlogPage extends StatelessWidget {
     final List<BlogModel> blogs = [
       BlogModel(
         id: '1',
+        title: 'Understanding Your Civic Duties',
+        author: 'Civic Sensei',
+        date: 'June 5, 2023',
+        content:
+            'Civic duties are the responsibilities expected of citizens in a democratic society. '
+            'These include voting in elections, paying taxes, obeying laws, and staying informed. '
+            'By fulfilling your civic duties, you help strengthen your community and contribute to good governance. '
+            'Understanding these roles helps you become a more active and responsible citizen.',
+        imageUrl:
+            'https://plus.unsplash.com/premium_photo-1733342422588-c2fc9e279836?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cmVzcG9uc2liaWxpdHl8ZW58MHx8MHx8fDA%3D',
+        tags: ['Civics', 'Citizenship', 'Responsibility'],
+      ),
+      BlogModel(
+        id: '2',
         title: 'How to Master Quiz Competitions',
         author: 'Quiz Expert',
         date: 'May 15, 2023',
@@ -27,20 +41,6 @@ class BlogPage extends StatelessWidget {
         tags: ['Quiz', 'Learning', 'Competition'],
       ),
       BlogModel(
-        id: '2',
-        title: 'Understanding Your Civic Duties',
-        author: 'Civic Sensei',
-        date: 'June 5, 2023',
-        content:
-            'Civic duties are the responsibilities expected of citizens in a democratic society. '
-            'These include voting in elections, paying taxes, obeying laws, and staying informed. '
-            'By fulfilling your civic duties, you help strengthen your community and contribute to good governance. '
-            'Understanding these roles helps you become a more active and responsible citizen.',
-        imageUrl:
-            'https://images.unsplash.com/photo-1581091870622-1c1b601a84a2',
-        tags: ['Civics', 'Citizenship', 'Responsibility'],
-      ),
-      BlogModel(
         id: '3',
         title: 'Why Community Engagement Matters',
         author: 'Community Voice',
@@ -50,7 +50,8 @@ class BlogPage extends StatelessWidget {
             'It encourages collaboration, builds trust, and helps solve local problems. '
             'When people participate in community activities, they create positive change and strengthen social ties. '
             'From volunteering to town hall meetings, every action makes a difference.',
-        imageUrl: 'https://images.unsplash.com/photo-1556761175-129418cb2dfe',
+        imageUrl:
+            'https://plus.unsplash.com/premium_photo-1708598525588-eae2b2d05a9e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         tags: ['Community', 'Engagement', 'Social Impact'],
       ),
       BlogModel(
@@ -64,7 +65,7 @@ class BlogPage extends StatelessWidget {
             'Encouraging youth involvement not only strengthens democracy but also helps develop future leaders. '
             'Empowering the youth is essential for long-term societal growth.',
         imageUrl:
-            'https://images.unsplash.com/photo-1520975918318-2eec94b7f266',
+            'https://images.unsplash.com/photo-1593896385987-16bcbf9451e5?q=80&w=1994&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         tags: ['Youth', 'Civic Action', 'Leadership'],
       ),
       BlogModel(
@@ -78,7 +79,7 @@ class BlogPage extends StatelessWidget {
             'By casting your vote, you contribute to the democratic process and ensure your voice is heard. '
             'An informed vote is the first step toward meaningful change.',
         imageUrl:
-            'https://images.unsplash.com/photo-1596495577886-d920f1fb7238',
+            'https://plus.unsplash.com/premium_photo-1708938893194-eaa4bf9efffd?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHZvdGluZ3xlbnwwfHwwfHx8MA%3D%3Dd920f1fb7238',
         tags: ['Voting', 'Democracy', 'Rights'],
       ),
       BlogModel(
@@ -91,7 +92,7 @@ class BlogPage extends StatelessWidget {
             'Contacting local representatives, reducing waste, and raising awareness are key steps. '
             'Civic responsibility includes protecting the environment for future generations.',
         imageUrl:
-            'https://images.unsplash.com/photo-1584270354949-1bc6d8e3e1a2',
+            'https://images.unsplash.com/photo-1564669733547-c6ca390e11c5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGVudmlyb25tZW50fGVufDB8fDB8fHww',
         tags: ['Environment', 'Civic Action', 'Sustainability'],
       ),
       BlogModel(
@@ -105,7 +106,7 @@ class BlogPage extends StatelessWidget {
             'being informed helps you protect yourself and others. '
             'Civic education is essential in building a society where rights are respected and upheld.',
         imageUrl:
-            'https://images.unsplash.com/photo-1604589031319-fbaceaf7b63c',
+            'https://plus.unsplash.com/premium_photo-1668058723804-d7dcd1ffa4c9?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8anVzdGljZXxlbnwwfHwwfHx8MA%3D%3D',
         tags: ['Rights', 'Law', 'Civic Education'],
       ),
       BlogModel(
@@ -119,7 +120,7 @@ class BlogPage extends StatelessWidget {
             'Activists amplify voices that might otherwise go unheard and drive policy change. '
             'Informed and peaceful activism can reshape societies for the better.',
         imageUrl:
-            'https://images.unsplash.com/photo-1589927986089-35812388d1ef',
+            'https://plus.unsplash.com/premium_photo-1679429321023-dff2ea455b0c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGNvbW11bml0eXxlbnwwfHwwfHx8MA%3D%3D',
         tags: ['Activism', 'Democracy', 'Change'],
       ),
       BlogModel(
@@ -133,7 +134,7 @@ class BlogPage extends StatelessWidget {
             'Through civic participation, people can foster mutual respect and social equity. '
             'Inclusion is key to a stronger, more united society.',
         imageUrl:
-            'https://images.unsplash.com/photo-1573497019430-2523b0040b4a',
+            'https://images.unsplash.com/photo-1591197172062-c718f82aba20?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y29tbXVuaXR5fGVufDB8fDB8fHww',
         tags: ['Inclusion', 'Community', 'Equality'],
       ),
     ];
