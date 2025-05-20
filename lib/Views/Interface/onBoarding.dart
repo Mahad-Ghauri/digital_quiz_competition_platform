@@ -1,7 +1,6 @@
 // ignore_for_file: deprecated_member_use
 
-import 'package:digital_quiz_competition_platform/Views/Auth%20Gate/auth_gate.dart';
-import 'package:digital_quiz_competition_platform/Views/dashboard.dart';
+import 'package:digital_quiz_competition_platform/Views/Authentication/login_screen.dart';
 import 'package:flutter/material.dart';
 
 class Onboarding extends StatefulWidget {
@@ -42,7 +41,7 @@ class _OnboardingState extends State<Onboarding> {
                     onPressed: () {
                       Navigator.of(
                         context,
-                      ).pushReplacement(_elegantRoute(const Dashboard()));
+                      ).pushReplacement(_elegantRoute(const LoginScreen()));
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.lightBlueAccent[900],

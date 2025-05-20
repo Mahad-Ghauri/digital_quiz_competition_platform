@@ -3,7 +3,7 @@
 import 'dart:developer';
 
 import 'package:digital_quiz_competition_platform/Views/Authentication/login_screen.dart';
-import 'package:digital_quiz_competition_platform/Views/Interface/interface_page.dart';
+import 'package:digital_quiz_competition_platform/Views/dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -21,15 +21,15 @@ class AuthenticationController {
       final response = await supabase.auth
           .signInWithPassword(email: email, password: password)
           .onError((error, stackTrace) {
-            log("Error: $error");
-            throw Exception("Error Occurred!");
-          });
+        log("Error: $error");
+        throw Exception("Error Occurred!");
+      });
 
       if (response.session != null) {
         //  If the user is logged in, we can redirect them to the home page
         Navigator.of(
           context,
-        ).push(MaterialPageRoute(builder: (context) => const InterfacePage()));
+        ).push(MaterialPageRoute(builder: (context) => const Dashboard()));
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             backgroundColor: Colors.green,
@@ -62,33 +62,32 @@ class AuthenticationController {
       await supabase.auth
           .signUp(email: email, password: password)
           .then((value) {
-            //  If the user is signed up, we can redirect them to the home page
-            Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => const LoginScreen()),
-            );
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                backgroundColor: Colors.green,
-                content: Center(
-                  child: Text(
-                    'Welcome to Quizizen! \n Please Login to Continue',
-                  ),
-                ),
-                behavior: SnackBarBehavior.floating,
+        //  If the user is signed up, we can redirect them to the home page
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => const LoginScreen()),
+        );
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            backgroundColor: Colors.green,
+            content: Center(
+              child: Text(
+                'Welcome to Quizizen! \n Please Login to Continue',
               ),
-            );
-          })
-          .onError((error, stackTrace) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                backgroundColor: Colors.red,
-                content: Text('Error: Unable to Sign Up'),
-                behavior: SnackBarBehavior.floating,
-              ),
-            );
-            log("Error: $error");
-            throw Exception("Error Occurred!");
-          });
+            ),
+            behavior: SnackBarBehavior.floating,
+          ),
+        );
+      }).onError((error, stackTrace) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            backgroundColor: Colors.red,
+            content: Text('Error: Unable to Sign Up'),
+            behavior: SnackBarBehavior.floating,
+          ),
+        );
+        log("Error: $error");
+        throw Exception("Error Occurred!");
+      });
     } catch (error) {
       log(error.toString());
     }
@@ -97,31 +96,28 @@ class AuthenticationController {
   //  Method to End the current session and log the user out of the application
   Future<void> signOutAndEndSession(BuildContext context) async {
     try {
-      await supabase.auth
-          .signOut()
-          .then((value) {
-            Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => const LoginScreen()),
-            ); //  Redirect the user to the login page
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                backgroundColor: Colors.green,
-                content: Text('Thanks For Using Our Services. See you Soon!'),
-                behavior: SnackBarBehavior.floating,
-              ),
-            );
-          })
-          .onError((error, stackTrace) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                backgroundColor: Colors.red,
-                content: Text('Error: Unable to Sign Out'),
-                behavior: SnackBarBehavior.floating,
-              ),
-            );
-            log("Error: $error");
-            throw Exception("Error Occurred!");
-          });
+      await supabase.auth.signOut().then((value) {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => const LoginScreen()),
+        ); //  Redirect the user to the login page
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            backgroundColor: Colors.green,
+            content: Text('Thanks For Using Our Services. See you Soon!'),
+            behavior: SnackBarBehavior.floating,
+          ),
+        );
+      }).onError((error, stackTrace) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            backgroundColor: Colors.red,
+            content: Text('Error: Unable to Sign Out'),
+            behavior: SnackBarBehavior.floating,
+          ),
+        );
+        log("Error: $error");
+        throw Exception("Error Occurred!");
+      });
     } catch (error) {
       log(error.toString());
     }
@@ -131,45 +127,41 @@ class AuthenticationController {
   Future<void> restorePassword(String email, BuildContext context) async {
     final navigator = Navigator.of(context);
     try {
-      await supabase.auth
-          .resetPasswordForEmail(email)
-          .then((value) {
-            log("Password Reset Link Sent");
-            showAdaptiveDialog(
-              context: context,
-              builder:
-                  (context) => AlertDialog(
-                    title: const Text('Password Reset'),
-                    content: const Text(
-                      'A password reset link has been sent to your email',
-                    ),
-                    actions: [
-                      ElevatedButton(
-                        onPressed: () => navigator.pop(),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.amber,
-                          foregroundColor: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        ),
-                        child: const Text(
-                          "Dismiss",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            letterSpacing: .5,
-                          ),
-                        ),
-                      ),
-                    ],
+      await supabase.auth.resetPasswordForEmail(email).then((value) {
+        log("Password Reset Link Sent");
+        showAdaptiveDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: const Text('Password Reset'),
+            content: const Text(
+              'A password reset link has been sent to your email',
+            ),
+            actions: [
+              ElevatedButton(
+                onPressed: () => navigator.pop(),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.amber,
+                  foregroundColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
                   ),
-            );
-          })
-          .onError((error, stackTrace) {
-            log("Error: $error");
-            throw Exception("Error Occurred!");
-          });
+                ),
+                child: const Text(
+                  "Dismiss",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: .5,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      }).onError((error, stackTrace) {
+        log("Error: $error");
+        throw Exception("Error Occurred!");
+      });
     } catch (error) {
       log(error.toString());
     }

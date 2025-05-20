@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:digital_quiz_competition_platform/Views/Interface/leaderboard_page.dart';
 import 'package:digital_quiz_competition_platform/Views/Interface/home_page.dart';
 import 'package:digital_quiz_competition_platform/Views/Interface/settings_page.dart';

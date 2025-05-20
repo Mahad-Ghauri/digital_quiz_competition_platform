@@ -33,8 +33,8 @@ class SearchFAB extends StatelessWidget {
     return FloatingActionButton(
       onPressed: () => NavigationHelper.navigateToSearchPage(context),
       backgroundColor: Colors.purpleAccent,
-      child: const Icon(Icons.search_rounded),
       tooltip: 'Search Quizzes',
+      child: const Icon(Icons.search_rounded),
     );
   }
 }

@@ -1,7 +1,9 @@
+// ignore_for_file: deprecated_member_use
 
 import 'package:digital_quiz_competition_platform/Controllers/Authentication/authentication_controller.dart';
-import 'package:digital_quiz_competition_platform/Views/Authentication/login_screen.dart';
-import 'package:digital_quiz_competition_platform/Views/Interface/interface_page.dart';
+// import 'package:digital_quiz_competition_platform/Views/Interface/interface_page.dart';
+import 'package:digital_quiz_competition_platform/Views/Interface/onboarding.dart';
+import 'package:digital_quiz_competition_platform/Views/dashboard.dart';
 // import 'package:digital_quiz_competition_platform/Views/Interface/question_page.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +19,8 @@ class AuthGate extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Scaffold(
             body: Center(
-              child: CircularProgressIndicator(color: Colors.purpleAccent.withOpacity(0.8)),
+              child: CircularProgressIndicator(
+                  color: Colors.purpleAccent.withOpacity(0.8)),
             ),
           );
         }
@@ -25,9 +28,9 @@ class AuthGate extends StatelessWidget {
         //  Checking if there exists any valid session
         final session = snapshot.hasData ? snapshot.data!.session : null;
         if (session != null) {
-          return const InterfacePage();
+          return const Dashboard();
         } else {
-          return const LoginScreen();
+          return const Onboarding();
         }
       },
     );
