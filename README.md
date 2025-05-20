@@ -438,8 +438,9 @@ pie
 ---
 
 <div align="center">
-  <p>Made with ❤️ by Your Team</p>
-  <p>© 2024 Digital Quiz Competition Platform. All rights reserved.</p>
+  <p>Made with ❤️ by Mahad Ghauri</p>
+<p>Contact: mahadghauri222@gmail.com</p>
+  <p>© 2025 Quzizen All rights reserved.</p>
 </div>
 
 ---
