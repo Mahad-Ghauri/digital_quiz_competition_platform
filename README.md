@@ -428,7 +428,7 @@ pie
 <div align="center">
   <h3>🌟 Join Our Community 🌟</h3>
   
-    [![Instagram](https://img.shields.io/badge/Instagram-7289DA?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/_ghauri?igsh=dmp1MzI4dGh1YjM3&utm_source=qr)
+  [![Instagram](https://img.shields.io/badge/Instagram-7289DA?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/_ghauri?igsh=dmp1MzI4dGh1YjM3&utm_source=qr)
   [![Linkdeln](https://img.shields.io/badge/Linkdeln-7289DA?style=for-the-badge&logo=linkedin&logoColor=white)](www.linkedin.com/in/mahad-ghauri-b59911353)
   [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Mahad-Ghauri/Digital_Quiz_Competition_Platform)
 </div>
