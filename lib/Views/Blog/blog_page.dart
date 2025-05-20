@@ -67,6 +67,33 @@ class BlogPage extends StatelessWidget {
             'https://images.unsplash.com/photo-1520975918318-2eec94b7f266',
         tags: ['Youth', 'Civic Action', 'Leadership'],
       ),
+      BlogModel(
+        id: '5',
+        title: 'Your Vote, Your Voice: Why Voting Matters',
+        author: 'Democracy Defender',
+        date: 'September 9, 2023',
+        content:
+            'Voting is a fundamental right and a powerful way to influence change. '
+            'Every election shapes policies that affect healthcare, education, and the environment. '
+            'By casting your vote, you contribute to the democratic process and ensure your voice is heard. '
+            'An informed vote is the first step toward meaningful change.',
+        imageUrl:
+            'https://images.unsplash.com/photo-1596495577886-d920f1fb7238',
+        tags: ['Voting', 'Democracy', 'Rights'],
+      ),
+      BlogModel(
+        id: '6',
+        title: 'Protecting Our Planet Through Civic Action',
+        author: 'Eco Advocate',
+        date: 'October 2, 2023',
+        content: 'Environmental issues require active civic participation. '
+            'From supporting green policies to organizing clean-up drives, your actions matter. '
+            'Contacting local representatives, reducing waste, and raising awareness are key steps. '
+            'Civic responsibility includes protecting the environment for future generations.',
+        imageUrl:
+            'https://images.unsplash.com/photo-1584270354949-1bc6d8e3e1a2',
+        tags: ['Environment', 'Civic Action', 'Sustainability'],
+      ),
     ];
 
     return Scaffold(
