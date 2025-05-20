@@ -28,35 +28,44 @@ class BlogPage extends StatelessWidget {
       ),
       BlogModel(
         id: '2',
-        title: 'The Benefits of Regular Quizzing',
-        author: 'Education Specialist',
-        date: 'June 3, 2023',
+        title: 'Understanding Your Civic Duties',
+        author: 'Civic Sensei',
+        date: 'June 5, 2023',
         content:
-            'Regular quizzing has numerous cognitive benefits. It enhances memory retention, '
-            'improves recall abilities, and helps in developing critical thinking skills. '
-            'Studies have shown that the act of retrieving information strengthens neural pathways, '
-            'making it easier to access that information in the future. '
-            'Additionally, quizzing exposes knowledge gaps, allowing for targeted learning. '
-            'Make quizzing a part of your routine to see significant improvements in your learning efficiency.',
+            'Civic duties are the responsibilities expected of citizens in a democratic society. '
+            'These include voting in elections, paying taxes, obeying laws, and staying informed. '
+            'By fulfilling your civic duties, you help strengthen your community and contribute to good governance. '
+            'Understanding these roles helps you become a more active and responsible citizen.',
         imageUrl:
-            'https://images.unsplash.com/photo-1434030216411-0b793f4b4173',
-        tags: ['Education', 'Memory', 'Brain Training'],
+            'https://images.unsplash.com/photo-1581091870622-1c1b601a84a2',
+        tags: ['Civics', 'Citizenship', 'Responsibility'],
       ),
       BlogModel(
         id: '3',
-        title: 'Creating Effective Quiz Questions',
-        author: 'Quiz Designer',
-        date: 'July 20, 2023',
+        title: 'Why Community Engagement Matters',
+        author: 'Community Voice',
+        date: 'July 12, 2023',
         content:
-            'Designing effective quiz questions is both an art and a science. '
-            'Good questions should be clear, unambiguous, and test understanding rather than mere memorization. '
-            'They should be challenging but not impossible, and ideally, they should encourage critical thinking. '
-            'When creating multiple-choice questions, ensure that all options are plausible. '
-            'For open-ended questions, be specific about what you\'re looking for in the answer. '
-            'Remember, the goal is to assess knowledge and promote learning, not to trick participants.',
+            'Community engagement is the backbone of a vibrant and connected society. '
+            'It encourages collaboration, builds trust, and helps solve local problems. '
+            'When people participate in community activities, they create positive change and strengthen social ties. '
+            'From volunteering to town hall meetings, every action makes a difference.',
+        imageUrl: 'https://images.unsplash.com/photo-1556761175-129418cb2dfe',
+        tags: ['Community', 'Engagement', 'Social Impact'],
+      ),
+      BlogModel(
+        id: '4',
+        title: 'The Power of Youth in Civic Action',
+        author: 'NextGen Leader',
+        date: 'August 21, 2023',
+        content:
+            'Young people play a critical role in shaping the future through civic engagement. '
+            'By participating in campaigns, policy discussions, and volunteer work, they bring fresh ideas and energy. '
+            'Encouraging youth involvement not only strengthens democracy but also helps develop future leaders. '
+            'Empowering the youth is essential for long-term societal growth.',
         imageUrl:
-            'https://images.unsplash.com/photo-1516321318423-f06f85e504b3',
-        tags: ['Question Design', 'Assessment', 'Education'],
+            'https://images.unsplash.com/photo-1520975918318-2eec94b7f266',
+        tags: ['Youth', 'Civic Action', 'Leadership'],
       ),
     ];
 
