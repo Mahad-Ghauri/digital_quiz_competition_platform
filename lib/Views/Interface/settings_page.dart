@@ -87,12 +87,6 @@ class _SettingsPageState extends State<SettingsPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.purpleAccent,
-        // leading: IconButton(
-        //   icon: const Icon(Icons.arrow_back, color: Colors.white),
-        //   onPressed: () {
-        //     Navigator.of(context).pop();
-        //   },
-        // ),
         title: Text(
           languageProvider.translate('settings'),
           style: GoogleFonts.poppins(
