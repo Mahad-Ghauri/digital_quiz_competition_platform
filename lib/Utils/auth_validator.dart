@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 class AuthValidator {
   // Check if user is authenticated
   static Future<bool> isAuthenticated() async {
-    // This is a mock implementation
     // In a real app, you would check with your auth service
     await Future.delayed(const Duration(milliseconds: 300));
     return true;

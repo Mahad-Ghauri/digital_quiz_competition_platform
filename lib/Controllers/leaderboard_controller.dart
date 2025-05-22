@@ -29,10 +29,10 @@ class LeaderboardController {
       _cacheTimestamp[filter] = DateTime.now();
       
       return data;
-    } catch (e) {
+    } catch (error) {
       // If error and we have stale cache, return it with a warning
       if (_cache.containsKey(filter)) {
-        debugPrint('Warning: Using stale cache due to error: $e');
+        debugPrint('Warning: Using stale cache due to error: $error');
         return _cache[filter]!;
       }
       

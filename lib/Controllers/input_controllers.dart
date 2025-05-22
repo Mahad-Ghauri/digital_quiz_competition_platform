@@ -14,6 +14,8 @@ class InputControllers {
       TextEditingController();
   final TextEditingController messageController = TextEditingController();
   final TextEditingController searchController = TextEditingController();
+  final ScrollController scrollController = ScrollController();
+  final FocusNode nameFocusNode = FocusNode();
   
   void dispose() {
     nameController.dispose();
@@ -23,5 +25,7 @@ class InputControllers {
     descriptionController.dispose();
     messageController.dispose();
     searchController.dispose();
+    scrollController.dispose();
+    nameFocusNode.dispose();
   }
 }
