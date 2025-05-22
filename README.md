@@ -427,31 +427,15 @@ pie
 
 <div align="center">
   <h3>🌟 Join Our Community 🌟</h3>
-  
-<<<<<<< HEAD
-    [![Instagram](https://img.shields.io/badge/Instagram-7289DA?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/_ghauri?igsh=dmp1MzI4dGh1YjM3&utm_source=qr)
-=======
   [![Instagram](https://img.shields.io/badge/Instagram-7289DA?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/_ghauri?igsh=dmp1MzI4dGh1YjM3&utm_source=qr)
->>>>>>> 16c014c579aad85357c1fe3c968a1aaf7f12a483
   [![Linkdeln](https://img.shields.io/badge/Linkdeln-7289DA?style=for-the-badge&logo=linkedin&logoColor=white)](www.linkedin.com/in/mahad-ghauri-b59911353)
   [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Mahad-Ghauri/Digital_Quiz_Competition_Platform)
-</div>
-
 </div>
 
 ---
 
 <div align="center">
-<<<<<<< HEAD
-  <p>Made with ❤️ by Your Team</p>
-  <p>© 2024 Digital Quiz Competition Platform. All rights reserved.</p>
-</div>
-
----
-*Last Updated: [Current Date]*
-=======
   <p>Made with ❤️ by Mahad Ghauri</p>
-<p>Contact: mahadghauri222@gmail.com</p>
+  <p>Contact: mahadghauri222@gmail.com</p>
   <p>© 2025 Quzizen All rights reserved.</p>
 </div>
->>>>>>> 16c014c579aad85357c1fe3c968a1aaf7f12a483
