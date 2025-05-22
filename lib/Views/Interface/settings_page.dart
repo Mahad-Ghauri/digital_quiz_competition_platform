@@ -99,10 +99,6 @@ class _SettingsPageState extends State<SettingsPage> {
       body: Container(
         decoration: const BoxDecoration(
           color: Colors.white70,
-          // image: DecorationImage(
-          //   image: AssetImage('assets/images/background.jpg'),
-          //   fit: BoxFit.cover,
-          // ),
         ),
         child: SafeArea(
           child: Padding(
