@@ -83,11 +83,6 @@ class _DashboardState extends State<Dashboard> {
               activeIcon: Icon(Icons.leaderboard_rounded),
               label: 'Leaderboard',
             ),
-            // BottomNavigationBarItem(
-            //   icon: Icon(Icons.person_outline_rounded),
-            //   activeIcon: Icon(Icons.person_rounded),
-            //   label: 'Profile',
-            // ),
             BottomNavigationBarItem(
               icon: Icon(Icons.settings_outlined),
               activeIcon: Icon(Icons.settings_rounded),
